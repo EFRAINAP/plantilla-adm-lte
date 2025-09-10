@@ -1,0 +1,103 @@
+/* Estilos para el visor PDF reutilizable */
+.pdf-viewer-container {
+    width: 100%;
+    height: 100vh;
+    top: auto;
+    height: 100%;
+    margin: 0 auto;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 5px;
+    border-radius: 8px;
+}
+
+.pdf-controls {
+    margin-bottom: 20px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    margin-bottom: 6px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.pdf-controls input[type="text"] {
+    padding: 10px;
+    width: 300px;
+    margin-right: 10px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    border: 1px solid #ced4da;
+}
+
+.pdf-controls .page-info {
+    font-size: 14px;
+    margin-left: 10px;
+    color: #555;
+}
+
+.pdf-container {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: auto;
+    margin-bottom: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-height: 100vh;
+}
+
+.pdf-canvas {
+    display: inline-block;
+    max-height: auto;
+}
+
+.pdf-canvas-container {
+    display: none;
+    max-height: 160vh;
+    background: #fff;
+    padding: 10px 0;
+    position: relative;
+}
+
+/* Indicadores visuales de scroll arriba y abajo */
+.pdf-canvas-container::before,
+.pdf-canvas-container::after {
+    content: "";
+    position: sticky;
+    left: 0;
+    right: 0;
+    height: 24px;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.pdf-canvas-container::before {
+    top: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.10), rgba(0,0,0,0));
+}
+
+.pdf-canvas-container::after {
+    bottom: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.10), rgba(0,0,0,0));
+}
+
+/* Estilos para canvas en vista múltiple */
+.pdf-canvas-container canvas {
+    display: block;
+    margin: 15px auto;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 4px;
+}
+
+.pdf-canvas-container canvas:first-child {
+    margin-top: 10px;
+}
+
+.pdf-canvas-container canvas:last-child {
+    margin-bottom: 10px;
+}
