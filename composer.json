@@ -1,0 +1,32 @@
+{
+    "name": "sistema/new",
+    "description": "Sistema moderno con PHP + AdminLTE 4 + Bootstrap 5",
+    "type": "project",
+    "require": {
+        "php": ">=8.2",
+        "almasaeed2010/adminlte": "^4.0.0-rc4",
+        "components/jquery": "^3.7",
+        "datatables/datatables": "^2.1.8",
+        "fortawesome/font-awesome": "^6.4",
+        "moment/moment": "^2.29",
+        "monolog/monolog": "^3.4",
+        "twbs/bootstrap": "^5.3",
+        "vlucas/phpdotenv": "^5.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/installers": true,
+            "oomphinc/composer-installers-extender": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
