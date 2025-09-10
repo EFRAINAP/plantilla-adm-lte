@@ -1,0 +1,350 @@
+/**
+ * Estilos personalizados para el sistema TAMA
+ * Colores: #1a2b3c (sidebar), #fc7702 (acentos)
+ */
+
+/* ===== FUNCIONALIDAD BOTONES CON SIDEBAR-EXPAND-LG ===== */
+/* Estado contraído - sidebar mini */
+.sidebar-expand-lg.sidebar-collapse .app-sidebar {
+    width: 70px !important;
+    min-height: 100vh;
+}
+
+.sidebar-expand-lg.sidebar-collapse .brand-text,
+.sidebar-expand-lg.sidebar-collapse .sidebar-menu .nav-link p {
+    display: none !important;
+}
+
+.sidebar-expand-lg.sidebar-collapse .nav-arrow {
+    display: none !important;
+}
+
+/* Centrar iconos cuando sidebar está contraído */
+.sidebar-expand-lg.sidebar-collapse .sidebar-menu .nav-link {
+    justify-content: center !important;
+    text-align: center;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.sidebar-expand-lg.sidebar-collapse .sidebar-menu .nav-icon {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+}
+
+.sidebar-expand-lg.sidebar-collapse .brand-link {
+    justify-content: center !important;
+    text-align: center;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.sidebar-expand-lg.sidebar-collapse .app-main,
+.sidebar-expand-lg.sidebar-collapse .app-footer {
+    margin-left: 70px !important;
+}
+
+/* Estado oculto - sidebar completamente invisible */
+.sidebar-expand-lg.sidebar-hidden .app-sidebar {
+    display: none !important;
+    width: 0 !important;
+}
+
+.sidebar-expand-lg.sidebar-hidden .app-main,
+.sidebar-expand-lg.sidebar-hidden .app-footer {
+    margin-left: 0 !important;
+}
+
+/* ===== SIDEBAR PERSONALIZADO ===== */
+.app-sidebar {
+    background-color: #1a2b3c !important;
+    border-right: 1px solid #2c3e50;
+    overflow-y: auto;
+    position: sticky; /* Sticky para mantenerlo fijo durante scroll */
+    top: 0; /* Se pega al top del contenedor */
+    height: 100vh; /* Altura completa del viewport */
+    max-height: 100vh; /* Máximo del viewport */
+}
+
+/* Estilo personalizado para el scroll del sidebar */
+.app-sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.app-sidebar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.app-sidebar::-webkit-scrollbar-thumb {
+    background: #fc7702;
+    border-radius: 3px;
+}
+
+.app-sidebar::-webkit-scrollbar-thumb:hover {
+    background: #e66a02;
+}
+
+.app-sidebar .sidebar-brand {
+    background-color: #1a2b3c;
+    border-bottom: 1px solid #2c3e50;
+}
+
+.app-sidebar .brand-link {
+    color: #fff !important;
+}
+
+.app-sidebar .brand-text {
+    color: #fc7702 !important;
+    font-weight: bold;
+}
+
+/* Menu del sidebar */
+.app-sidebar .sidebar-menu .nav-link {
+    color: #ecf0f1 !important;
+    transition: all 0.3s ease;
+}
+
+.app-sidebar .sidebar-menu .nav-link:hover {
+    background-color: #2c3e50 !important;
+    color: #fc7702 !important;
+}
+
+.app-sidebar .sidebar-menu .nav-link.active {
+    background-color: #fc7702 !important;
+    color: #fff !important;
+}
+
+.app-sidebar .sidebar-menu .nav-header {
+    color: #bdc3c7 !important;
+    background-color: transparent;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Iconos del menu */
+.app-sidebar .sidebar-menu .nav-icon {
+    color: #ecf0f1;
+}
+
+.app-sidebar .sidebar-menu .nav-link:hover .nav-icon {
+    color: #fc7702 !important;
+}
+
+.app-sidebar .sidebar-menu .nav-link.active .nav-icon {
+    color: #fff !important;
+}
+
+/* Submenus */
+.app-sidebar .sidebar-menu .nav-treeview {
+    background-color: rgba(0,0,0,0.1);
+}
+
+.app-sidebar .sidebar-menu .nav-treeview .nav-link {
+    /*padding-left: 50px;*/
+    color: #bdc3c7 !important;
+}
+
+.app-sidebar .sidebar-menu .nav-treeview .nav-link:hover {
+    color: #fc7702 !important;
+    background-color: rgba(252, 119, 2, 0.1) !important;
+}
+
+/* ===== NAVBAR PERSONALIZADO ===== */
+.app-header .navbar-nav .nav-link {
+    color: #495057;
+    transition: color 0.3s ease;
+}
+
+.app-header .navbar-nav .nav-link:hover {
+    color: #fc7702 !important;
+}
+
+/* Breadcrumbs */
+.breadcrumb-item.active {
+    color: #fc7702 !important;
+}
+
+.breadcrumb-item a {
+    color: #495057;
+    text-decoration: none;
+}
+
+.breadcrumb-item a:hover {
+    color: #fc7702;
+}
+
+/* ===== TÍTULOS Y ACENTOS ===== */
+.app-content-header h3 {
+    color: #1a2b3c;
+    font-weight: 600;
+}
+
+/* Links importantes */
+.text-accent {
+    color: #fc7702 !important;
+}
+
+.bg-accent {
+    background-color: #fc7702 !important;
+    color: #fff;
+}
+
+.btn-accent {
+    background-color: #fc7702;
+    border-color: #fc7702;
+    color: #fff;
+}
+
+.btn-accent:hover {
+    background-color: #e66a02;
+    border-color: #e66a02;
+    color: #fff;
+}
+
+/* ===== SIDEBAR FUNCIONALIDAD ===== */
+.sidebar-hidden .app-main,
+.sidebar-hidden .app-footer {
+    margin-left: 0 !important;
+}
+
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 768px) {
+    .app-sidebar {
+        margin-left: -250px;
+    }
+    
+    .sidebar-open .app-sidebar {
+        margin-left: 0;
+    }
+}
+
+/* Mejoras para el sidebar legacy (compatibilidad) */
+.sidebar-dark-primary .nav-sidebar > .nav-item > .nav-link.active,
+.sidebar-dark-primary .nav-sidebar > .nav-item.menu-open > .nav-link {
+    background-color: #fc7702;
+    color: #fff;
+}
+
+/* Animaciones suaves para el menú */
+.nav-treeview {
+    transition: all 0.3s ease-in-out;
+}
+
+/* Estilos para los separadores del menú */
+.nav-header {
+    font-size: 11px;
+    color: #4f5962;
+    padding: 10px 0.5rem 2px 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Mejoras para las tarjetas */
+.card {
+    box-shadow: 0 0 1px rgba(0,0,0,.125), 0 1px 3px rgba(0,0,0,.2);
+    border: none;
+}
+
+.card-header {
+    border-bottom: 1px solid rgba(0,0,0,.125);
+    padding: 0.75rem 1.25rem;
+    background-color: transparent;
+}
+
+/* Botones personalizados */
+.btn-custom {
+    border-radius: 0.25rem;
+    font-weight: 500;
+    transition: all 0.15s ease-in-out;
+}
+
+.btn-custom:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+}
+
+/* Tablas responsivas mejoradas */
+.table-responsive {
+    border-radius: 0.25rem;
+    box-shadow: 0 0 1px rgba(0,0,0,.125), 0 1px 3px rgba(0,0,0,.2);
+}
+
+.table th {
+    border-top: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    letter-spacing: 0.5px;
+    color: #495057;
+}
+
+/* Formularios mejorados */
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Loading spinner personalizado */
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255,255,255,.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Alertas personalizadas */
+.alert {
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 500;
+}
+
+.alert-success {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.alert-warning {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.alert-info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .content-wrapper {
+        margin-left: 0;
+    }
+    
+    .main-sidebar {
+        margin-left: -250px;
+    }
+    
+    .sidebar-open .main-sidebar {
+        margin-left: 0;
+    }
+}
+
+/* Estilos para la imagen del logo en el sidebar */
+.brand-image {
+    filter: brightness(0) invert(1);
+}
