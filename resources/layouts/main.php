@@ -20,7 +20,7 @@ $user = current_user();
   <!-- Bootstrap Icons (AdminLTE 4 requirement) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="<?= adminlte('dist/css/adminlte.css') ?>">
+  <link rel="stylesheet" href="<?= adminlte('css/adminlte.css') ?>">
   <!-- Custom CSS -->
   <link rel="stylesheet" href="<?= asset('css/custom.css') ?>">
   <link rel='stylesheet' href='<?= asset('css/dashboard.css') ?>'>
@@ -77,7 +77,7 @@ $user = current_user();
               <!--begin::Message-->
               <div class="d-flex">
                 <div class="flex-shrink-0">
-                  <img src="<?= adminlte('dist/assets/img/user1-128x128.jpg') ?>" alt="User Avatar" class="img-size-50 rounded-circle me-3">
+                  <img src="<?= adminlte('img/user1-128x128.jpg') ?>" alt="User Avatar" class="img-size-50 rounded-circle me-3">
                 </div>
                 <div class="flex-grow-1">
                   <h3 class="dropdown-item-title">
@@ -135,7 +135,7 @@ $user = current_user();
         <li class="nav-item dropdown user-menu">
           <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
             <img
-              src="<?= adminlte('dist/assets/img/user2-160x160.jpg') ?>"
+              src="<?= adminlte('img/user2-160x160.jpg') ?>"
               class="user-image rounded-circle shadow"
               alt="User Image"
             />
@@ -145,7 +145,7 @@ $user = current_user();
             <!--begin::User Image-->
             <li class="user-header text-bg-primary">
               <img
-                src="<?= adminlte('dist/assets/img/user2-160x160.jpg') ?>"
+                src="<?= adminlte('img/user2-160x160.jpg') ?>"
                 class="rounded-circle shadow"
                 alt="User Image"
               />
@@ -265,13 +265,13 @@ $user = current_user();
 <!-- jQuery -->
 <script src="<?= jquery('jquery.min.js') ?>"></script>
 <!-- Moment.js -->
-<script src="<?= vendor('moment/moment.min.js') ?>"></script>
+<script src="<?= asset('moment/moment.min.js') ?>"></script>
 <!-- DataTables -->
-<script src="<?= vendor('DataTables-2.1.8/datatables.min.js') ?>"></script>
+<script src="<?= asset('DataTables-2.1.8/datatables.min.js') ?>"></script>
 <!-- Bootstrap 5 -->
 <script src="<?= bootstrap('js/bootstrap.bundle.min.js') ?>"></script>
 <!-- AdminLTE App -->
-<script src="<?= adminlte('dist/js/adminlte.js') ?>"></script>
+<script src="<?= adminlte('js/adminlte.js') ?>"></script>
 <!-- Select2 -->
 <script src="<?= asset('js/select2.min.js') ?>"></script>
 
