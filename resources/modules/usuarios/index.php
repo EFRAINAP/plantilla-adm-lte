@@ -3,7 +3,12 @@
 
     $title = 'Administrador de Usuarios';
 	$name_page_principal = '01_AdministrarUsuarios.php';
-    require_once BASE_PATH . '/app/core/00_load.php';
+    require_once BASE_PATH . '/app/core/load.php';
+
+    if(!has_access($name_page_principal)){
+        // Si el usuario no tiene acceso, redirigir al dashboard
+        redirectTo('dashboard', false);
+    }
 
     $all_areas = find_table_array('area');
     $all_procesos = find_table_array('proceso');
@@ -72,7 +77,7 @@ ob_start();
 <div class="modal fade" id="Modal-Usuario" tabindex="-1" role="dialog" aria-labelledby="modalUsuarioLabel" aria-hidden="false">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-blue">
                 <div class="d-flex align-items-center">
                     <i class="bi bi-person-gear fs-4 me-3"></i>
                     <div>
@@ -472,8 +477,8 @@ $pageScripts = '
         puestos: ' . json_encode($all_puestos) . '
     };
 </script>
-<script type="text/javascript" src="' . BASE_URL . '/public/assets/js/usuarios/GestionUsuarios.js"></script>
+<script type="module" src="' . BASE_URL . '/public/assets/js/usuarios/GestionUsuarios.js"></script>
 ';
 
-include __DIR__ . '/../../layouts/main.php';
+include RESOURCES_PATH . '/layouts/main.php';
 ?>

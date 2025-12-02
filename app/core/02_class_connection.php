@@ -13,11 +13,28 @@ class Pdo_DB {
     /*--------------------------------------------------------------*/
     /* Function for Open database connection
     /*--------------------------------------------------------------*/
-    private function db_connect() {
+    /*private function db_connect() {
         try {
             $this->con = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASS);
             $this->con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->con->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            die("Database connection failed: " . $e->getMessage());
+        }
+    }*/
+    private function db_connect() {
+        try {
+            $this->con = new PDO(
+                "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8mb4",
+                DB_USER,
+                DB_PASS,
+                [
+                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                ]
+            );
+            // Asegura que la sesión de la conexión use utf8mb4
+            $this->con->exec("SET NAMES utf8mb4");
         } catch (PDOException $e) {
             die("Database connection failed: " . $e->getMessage());
         }

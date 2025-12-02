@@ -1,4 +1,4 @@
-
+import { showToast, showSwalToast } from '../toast.js';
 	$(document).ready(function() {
 		// Configuración inicial
 		let selectedUsername = null;
@@ -6,29 +6,6 @@
 		// Función para mostrar loading
 		function showLoading(tableId) {
 			$(`#${tableId} tbody`).html('<tr><td colspan="100%" class="text-center"><div class="loading-spinner"></div><br>Cargando datos...</td></tr>');
-		}
-
-		// Función para mostrar notificaciones toast
-		function showToast(message, type = 'info') {
-			const toastHtml = `
-				<div class="toast align-items-center text-bg-${type} border-0" role="alert" aria-live="assertive" aria-atomic="true">
-					<div class="d-flex">
-						<div class="toast-body">${message}</div>
-						<button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
-					</div>
-				</div>
-			`;
-			
-			if (!$('#toast-container').length) {
-				$('body').append('<div id="toast-container" class="toast-container position-fixed top-0 end-0 p-3"></div>');
-			}
-			
-			const $toast = $(toastHtml);
-			$('#toast-container').append($toast);
-			const toast = new bootstrap.Toast($toast[0]);
-			toast.show();
-			
-			setTimeout(() => $toast.remove(), 5000);
 		}
 
 		// Configuración mejorada de DataTable principal
@@ -49,9 +26,6 @@
 				beforeSend: function() {
 					showLoading('TablaUsuarios');
 				},
-				error: function(xhr, error, thrown) {
-					showToast('Error al cargar los usuarios: ' + thrown, 'danger');
-				}
 			},
 			deferRender: true,
 			columns: [
@@ -191,7 +165,7 @@
 					if (json.success) {
 						return json.data || [];
 					} else {
-						showToast(json.message || 'Error al cargar perfiles', 'danger');
+						showSwalToast(json.message || 'Error al cargar perfiles', 'danger');
 						return [];
 					}
 				},
@@ -281,7 +255,7 @@
 				// Actualizar tabla de perfiles inmediatamente
 				table3.ajax.reload(null, false);
 				// Mostrar información del usuario seleccionado
-				showToast(`Usuario seleccionado: ${data.name} (${data.username})`, 'info');
+				showSwalToast(`Usuario seleccionado: ${data.name} (${data.username})`, 'info');
 			}
 		});	
 
@@ -377,7 +351,7 @@
 		// Evento para abrir modal de agregar perfil
 		$(document).on('click', '#btnAgregarUserPerfiles', function() {
 			if (!selectedUsername) {
-				showToast('Por favor, selecciona un usuario primero', 'warning');
+				showSwalToast('Por favor, selecciona un usuario primero', 'warning');
 				return false;
 			}
 			
@@ -415,7 +389,7 @@
 				},
 				error: function() {
 					$('#perfil-usuario').html('<option value="">Error al cargar perfiles</option>').prop('disabled', false);
-					showToast('Error al cargar los perfiles disponibles', 'danger');
+					showSwalToast('Error al cargar los perfiles disponibles', 'danger');
 				}
 			});
 		}
@@ -437,12 +411,12 @@
 					},
 					dataType: 'json',
 					success: function(response) {
-						showToast(response.message, response.error ? 'danger' : 'success');
+						showSwalToast(response.message, response.error ? 'danger' : 'success');
 						// Recargar la tabla principal
 						table1.ajax.reload();
 					},
 					error: function(xhr, status, error) {
-						showToast('Error al eliminar el usuario: ' + error, 'danger');
+						showSwalToast('Error al eliminar el usuario: ' + error, 'danger');
 					}
 				});
 			}
@@ -465,11 +439,11 @@
 							operacion: 'eliminar_perfil'
 						},
 						success: function(response) {
-							showToast('Perfil eliminado correctamente', 'success');
+							showSwalToast('Perfil eliminado correctamente', 'success');
 							table3.ajax.reload();
 						},
 						error: function(xhr, status, error) {
-							showToast('Error al eliminar el perfil: ' + error, 'danger');
+							showSwalToast('Error al eliminar el perfil: ' + error, 'danger');
 						}
 					});
 				}
@@ -485,7 +459,7 @@
 			
 			if (password && reenterPassword && password !== reenterPassword) {
 				$(this).addClass('is-invalid');
-				showToast('Las contraseñas no coinciden', 'warning');
+				showSwalToast('Las contraseñas no coinciden', 'warning');
 			} else {
 				$(this).removeClass('is-invalid');
 			}
@@ -498,7 +472,7 @@
 			
 			if (password && reenterPassword && password !== reenterPassword) {
 				$(this).addClass('is-invalid');
-				showToast('Las contraseñas no coinciden', 'warning');
+				showSwalToast('Las contraseñas no coinciden', 'warning');
 			} else {
 				$(this).removeClass('is-invalid');
 			}
@@ -537,15 +511,15 @@
 						dataType: 'json',
 						success: function(response) {
 							$('#Modal-Usuario').modal('hide');
-							showToast(response.message, response.error ? 'danger' : 'success');
+							showSwalToast(response.message, response.error ? 'danger' : 'success');
 							table1.ajax.reload();
 						},
 					});
 				} else {
-					showToast('Las contraseñas no coinciden', 'warning');
+					showSwalToast('Las contraseñas no coinciden', 'warning');
 				}
 			} else {
-				showToast('Por favor, completa todos los campos requeridos', 'warning');	
+				showSwalToast('Por favor, completa todos los campos requeridos', 'warning');	
 			}
 		});
 
@@ -577,15 +551,15 @@
 					dataType: 'json',
 					success: function(response) {
 						$('#Modal-Usuario').modal('hide');
-						showToast(response.message, response.error ? 'danger' : 'success');
+						showSwalToast(response.message, response.error ? 'danger' : 'success');
 						table1.ajax.reload();
 					},
 					error: function(xhr, status, error) {
-						showToast('Error al actualizar usuario: ' + error, 'danger');
+						showSwalToast('Error al actualizar usuario: ' + error, 'danger');
 					}
 				});
 			} else {
-				showToast('Por favor, completa todos los campos requeridos', 'warning');	
+				showSwalToast('Por favor, completa todos los campos requeridos', 'warning');	
 			}
 		});
 
@@ -608,15 +582,15 @@
 					dataType: 'json',
 					success: function(response) {
 						$('#Modal-Usuario').modal('hide');
-						showToast(response.message, response.error ? 'danger' : 'success');
+						showSwalToast(response.message, response.error ? 'danger' : 'success');
 						table1.ajax.reload();
 					},
 					error: function(xhr, status, error) {
-						showToast('Error al cambiar contraseña: ' + error, 'danger');
+						showSwalToast('Error al cambiar contraseña: ' + error, 'danger');
 					}
 				});
 			} else {
-				showToast('Por favor, completa todos los campos requeridos', 'warning');
+				showSwalToast('Por favor, completa todos los campos requeridos', 'warning');
 			}
 		});
 
@@ -629,12 +603,12 @@
 			
 			// Validaciones mejoradas
 			if (!username) {
-				showToast('No se puede identificar el usuario', 'danger');
+				showSwalToast('No se puede identificar el usuario', 'danger');
 				return;
 			}
 			
 			if (!perfil) {
-				showToast('Por favor seleccione un perfil', 'warning');
+				showSwalToast('Por favor seleccione un perfil', 'warning');
 				$('#perfil-usuario').focus();
 				return;
 			}
@@ -656,7 +630,7 @@
 				success: function(response) {
 					$('#Modal-Agregar-Perfil').modal('hide');
 					// Mostrar mensaje de éxito
-					showToast(response.message, response.error ? 'danger' : 'success');
+					showSwalToast(response.message, response.error ? 'danger' : 'success');
 					table3.ajax.reload();
 					
 					// Limpiar formulario
@@ -667,7 +641,7 @@
 					if (xhr.responseText && xhr.responseText.includes('ya ha sido registrado')) {
 						errorMsg = 'Este perfil ya está asignado al usuario';
 					}
-					showToast(errorMsg, 'danger');
+					showSwalToast(errorMsg, 'danger');
 				},
 				complete: function() {
 					$btn.prop('disabled', false).html('<i class="bi bi-check-circle me-2"></i>Agregar Perfil');
@@ -725,7 +699,7 @@
 				error: function() {
 					$('#tabla-permisos tbody').html('<tr><td colspan="7" class="text-center text-danger">Error al cargar páginas</td></tr>');
 					$('#resumen-permisos').text('Error al cargar páginas');
-					showToast('Error al cargar las páginas disponibles', 'danger');
+					showSwalToast('Error al cargar las páginas disponibles', 'danger');
 				}
 			});
 		}
@@ -815,7 +789,7 @@
 		// Evento para abrir modal de control de accesos
 		$(document).on('click', '.btnAccesos', function() {
 			if (!selectedUsername) {
-				showToast('Por favor, selecciona un usuario primero', 'warning');
+				showSwalToast('Por favor, selecciona un usuario primero', 'warning');
 				return false;
 			}
 			
@@ -831,7 +805,7 @@
 		// Función para guardar los accesos modificados
 		$('#btnGuardarAccesos').off('click').on('click', function() {
 			if (!selectedUsername) {
-				showToast('No hay usuario seleccionado', 'danger');
+				showSwalToast('No hay usuario seleccionado', 'danger');
 				return;
 			}
 			
@@ -867,9 +841,9 @@
 				beforeSend: () => $btn.prop('disabled', true).html('<i class="bi bi-hourglass-split me-2"></i>Guardando...'),
 				success: function(response) {
 					$('#Modal-Control-Accesos').modal('hide');
-					showToast(response.message, response.error ? 'danger' : 'success');
+					showSwalToast(response.message, response.error ? 'danger' : 'success');
 				},
-				error: (xhr, status, error) => showToast('Error al actualizar accesos: ' + error, 'danger'),
+				error: (xhr, status, error) => showSwalToast('Error al actualizar accesos: ' + error, 'danger'),
 				complete: () => $btn.prop('disabled', false).html('<i class="bi bi-check-circle me-2"></i>Guardar Accesos')
 			});
 		});

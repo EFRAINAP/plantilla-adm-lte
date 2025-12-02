@@ -6,9 +6,16 @@
 
 class Config {
     /**
-     * Obtener la URL base del sistema dinámicamente
+     * Obtener la URL base del sistema desde .env o dinámicamente
      */
     public static function getBaseUrl() {
+        // Intentar obtener de .env primero
+        $baseUrl = $_ENV['APP_URL'] ?? null;
+        if ($baseUrl) {
+            return rtrim($baseUrl, '/');
+        }
+        
+        // Fallback: calcular dinámicamente
         $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' 
             || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
         
@@ -27,9 +34,19 @@ class Config {
     }
     
     /**
-     * Obtener la URL de assets (css, js, etc.)
+     * Obtener la URL de assets (css, js, etc.) desde .env o por defecto
      */
     public static function getAssetsUrl() {
+        $assetsUrl = $_ENV['ASSETS_URL'] ?? null;
+        if ($assetsUrl) {
+            // Si es una URL relativa, combinar con base URL
+            if (strpos($assetsUrl, 'http') !== 0) {
+                return self::getBaseUrl() . rtrim($assetsUrl, '/');
+            }
+            return rtrim($assetsUrl, '/');
+        }
+        
+        // Fallback por defecto
         return self::getBaseUrl() . '/public/assets';
     }
     
@@ -37,7 +54,7 @@ class Config {
      * Obtener la ruta de assets AdminLTE
      */
     public static function getAdminLTEUrl() {
-        return self::getBaseUrl() . '/vendor/almasaeed2010/adminlte';
+        return self::getBaseUrl() . '/public/assets/adminlte';
     }
     
     /**

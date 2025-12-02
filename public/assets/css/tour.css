@@ -1,0 +1,244 @@
+/* ================= Estilos Profesionales para el Tour ================= */
+
+.driver-popover.driverjs-theme {
+  background: linear-gradient(145deg, #fef3c7, #fde047);
+  color: #1f2937;
+  border: 2px solid #f59e0b;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(245, 158, 11, 0.25), 
+              0 10px 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  max-width: 400px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.driver-popover.driverjs-theme .driver-popover-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #f59e0b;
+  color: #92400e;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.driver-popover.driverjs-theme .driver-popover-description {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #374151;
+  margin-bottom: 16px;
+}
+
+.driver-popover.driverjs-theme .driver-popover-description strong {
+  color: #92400e;
+  font-weight: 600;
+}
+
+.driver-popover.driverjs-theme .driver-popover-description em {
+  color: #6b7280;
+  font-style: italic;
+}
+
+.driver-popover.driverjs-theme .driver-popover-progress-text {
+  color: #6b7280;
+  font-size: 12px;
+  font-weight: 500;
+  padding-right: 8px;
+}
+
+/* ================= Botones del Tour ================= */
+.driver-popover.driverjs-theme button {
+  flex: 1;
+  text-align: center;
+  background: linear-gradient(145deg, #1f2937, #374151);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  text-shadow: none;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 16px;
+  margin: 0 4px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.driver-popover.driverjs-theme button:hover {
+  background: linear-gradient(145deg, #374151, #4b5563);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.driver-popover.driverjs-theme button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.driver-popover.driverjs-theme .driver-popover-navigation-btns {
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+/* ================= Botón de Cerrar ================= */
+.driver-popover.driverjs-theme .driver-popover-close-btn {
+  color: #6b7280;
+  font-size: 18px;
+  transition: all 0.2s ease;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.driver-popover.driverjs-theme .driver-popover-close-btn:hover {
+  color: #dc2626;
+  background-color: rgba(220, 38, 38, 0.1);
+  transform: scale(1.1);
+}
+
+/* ================= Flechas del Popover ================= */
+
+/* ================= Flechas del Popover ================= */
+.driver-popover.driverjs-theme .driver-popover-arrow-side-left.driver-popover-arrow {
+  border-left-color: #f59e0b;
+  filter: drop-shadow(2px 0 4px rgba(0, 0, 0, 0.1));
+}
+
+.driver-popover.driverjs-theme .driver-popover-arrow-side-right.driver-popover-arrow {
+  border-right-color: #f59e0b;
+  filter: drop-shadow(-2px 0 4px rgba(0, 0, 0, 0.1));
+}
+
+.driver-popover.driverjs-theme .driver-popover-arrow-side-top.driver-popover-arrow {
+  border-top-color: #f59e0b;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.driver-popover.driverjs-theme .driver-popover-arrow-side-bottom.driver-popover-arrow {
+  border-bottom-color: #f59e0b;
+  filter: drop-shadow(0 -2px 4px rgba(0, 0, 0, 0.1));
+}
+
+/* ================= Overlay Personalizado (Menos Borroso) ================= */
+.driver-overlay {
+  background-color: rgba(0, 0, 0, 0.212) !important;
+  backdrop-filter: none !important;
+}
+
+/* ================= Eliminar blur excesivo ================= */
+.driver-popover.driverjs-theme {
+  background: linear-gradient(145deg, #fef3c7, #fde047);
+  color: #1f2937;
+  border: 2px solid #f59e0b;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(245, 159, 11, 0.055), 
+              0 10px 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: none;
+  max-width: 400px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ================= Animaciones ================= */
+.driver-popover.driverjs-theme {
+  animation: tourFadeIn 0.3s ease-out;
+}
+
+@keyframes tourFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ================= Botón del Tour en la Página ================= */
+#btnTour {
+  position: fixed;
+  bottom: 5px;
+  right: 20px;
+  z-index: 1050;
+  background: linear-gradient(145deg, #f59e0b, #fbbf24);
+  border: none;
+  border-radius: 50px;
+  padding: 12px 20px;
+  color: #92400e;
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3),
+              0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#btnTour:hover {
+  background: linear-gradient(145deg, #fbbf24, #f59e0b);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(245, 158, 11, 0.4),
+              0 6px 15px rgba(0, 0, 0, 0.15);
+  color: #92400e;
+}
+
+#btnTour:active {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 15px rgba(245, 158, 11, 0.3),
+              0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+#btnTour i {
+  font-size: 16px;
+}
+
+/* ================= Efectos Visuales Durante el Tour ================= */
+.tour-highlight {
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.8) !important;
+  border: 2px solid #f59e0b !important;
+  border-radius: 8px !important;
+  transition: all 0.3s ease !important;
+}
+
+/* ================= Mejoras Responsive ================= */
+@media (max-width: 768px) {
+  .driver-popover.driverjs-theme {
+    max-width: 300px;
+    margin: 10px;
+  }
+  
+  #btnTour {
+    top: 80px;
+    right: 10px;
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+  
+  .driver-popover.driverjs-theme .driver-popover-title {
+    font-size: 16px;
+  }
+  
+  .driver-popover.driverjs-theme .driver-popover-description {
+    font-size: 13px;
+  }
+}
+
+/* ================= Estados del Tour ================= */
+.tour-active {
+  pointer-events: none;
+}
+
+.tour-active .driver-highlighted-element {
+  pointer-events: auto;
+}

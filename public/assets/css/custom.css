@@ -1,5 +1,5 @@
 /**
- * Estilos personalizados para el sistema TAMA
+ * Estilos personalizados para el sistema EMPRESA
  * Colores: #1a2b3c (sidebar), #fc7702 (acentos)
  */
 
@@ -95,7 +95,7 @@
 }
 
 .app-sidebar .brand-text {
-    color: #fc7702 !important;
+    /*color: #fc7702 !important;*/
     font-weight: bold;
 }
 

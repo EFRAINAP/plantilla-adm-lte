@@ -1,0 +1,22 @@
+# Configuraciones para servidor web
+RewriteEngine On
+
+# CORS ahora es manejado por CorsMiddleware en PHP
+# Se removió configuración básica de CORS de Apache
+
+# Redirigir todas las peticiones a index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+# Seguridad - Ocultar archivos PHP
+<Files "*.php">
+    Order Allow,Deny
+    Allow from all
+</Files>
+
+# Permitir index.php y test.php como puntos de entrada
+<Files ~ "^(?!(index|test)\.php$).*\.php$">
+    Order Deny,Allow
+    Deny from all
+</Files>

@@ -5,12 +5,12 @@
 	$permiso = 'editar';
 	// Definir la página principal para control de acceso
 	$name_page_principal = '01_AdministrarPerfiles.php';
-	require_once BASE_PATH . '/app/core/00_load.php';
+	require_once BASE_PATH . '/app/core/load.php';
 
 	// Verificar si el usuario puede editar usuarios (administradores tienen acceso automático)
 	if (!has_access_with_permissions($name_page_principal, $permiso)) {
 		echo json_encode(['error' => true, 'message' => 'No tiene permisos para editar perfiles.']);
-		redirect($name_page_principal, false); // Temporal
+		redirectTo($name_page_principal, false); // Temporal
 	}
 
     $all_proceso = find_table_array('proceso');
@@ -174,5 +174,5 @@ $pageScripts = '
 <script type="text/javascript" src="' . BASE_URL . '/public/assets/js/usuarios/editar_perfil.js"></script>
 ';
 
-include __DIR__ . '/../../layouts/main.php';
+include RESOURCES_PATH . '/layouts/main.php';
 ?>

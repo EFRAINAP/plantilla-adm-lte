@@ -1,6 +1,6 @@
 <?php
 //$page_title = 'SQL';
-require_once(LIB_PATH_INC . DS . "00_load.php");
+require_once(LIB_PATH_INC . DS . "load.php");
 
 function tableExists($table) {
     global $db;
@@ -261,5 +261,19 @@ function find_table_2_field_2_array($table1, $table2, $field1, $field2, $filter,
     }
 
     // Si alguna de las tablas no existe, devolver false
+    return false;
+}
+
+// Obtener registros con filtro
+function find_table_distinct($table, $field, ) {
+    global $db;
+
+    if (tableExists($table)) {
+        $escaped_table = $db->escape($table);
+        $escaped_field = $db->escape($field);
+        $sql = "SELECT DISTINCT {$escaped_field} FROM {$escaped_table}";
+        $result = $db->query($sql);
+        return $db->while_loop($result);
+    }
     return false;
 }

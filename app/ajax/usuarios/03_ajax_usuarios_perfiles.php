@@ -10,7 +10,11 @@ ini_set('display_errors', 1);
 header('Content-Type: application/json; charset=UTF-8');
 
 // Cargar el sistema
-require_once __DIR__ . '/../../core/00_load.php';
+// Definir BASE_PATH si no está definido
+if (!defined('BASE_PATH')) {
+    define('BASE_PATH', dirname(__DIR__, 3));
+}
+require_once BASE_PATH . '/app/core/load.php';
 
 $user = current_user();
 
@@ -21,7 +25,7 @@ if (!$session->isUserLoggedIn(true)) {
 }
 
 // Verificar permisos para gestión de usuarios
-$name_page_principal = 'usuarios';
+$name_page_principal = '01_AdministrarUsuarios.php';
 $permiso = 'editar';
 
 if (!has_access($name_page_principal) || !has_access_with_permissions($name_page_principal, $permiso)) {
@@ -30,7 +34,7 @@ if (!has_access($name_page_principal) || !has_access_with_permissions($name_page
 }
 
 // Conexión a base de datos
-require_once __DIR__ . '/../01_ajax_connection.php';
+require_once BASE_PATH . '/app/ajax/ajax_connection.php';
 
 // Crear la conexión
 $objeto = new connection_ajax();

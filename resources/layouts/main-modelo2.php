@@ -10,7 +10,7 @@ $user = current_user();
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title><?= htmlspecialchars($title) ?> | TAMA</title>
+  <title><?= htmlspecialchars($title) ?> | EMPRESA</title>
   <link rel="icon" href="<?= assetPublicImages('favicon.ico') ?>" type="image/x-icon">
 
   <!-- Google Font: Source Sans Pro -->
@@ -20,14 +20,14 @@ $user = current_user();
   <!-- Bootstrap Icons (AdminLTE 4 requirement) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="<?= adminlte('dist/css/adminlte.css') ?>">
+  <link rel="stylesheet" href="<?= adminlte('css/adminlte.css') ?>">
   <!-- Custom CSS -->
   <link rel="stylesheet" href="<?= asset('css/custom.css') ?>">
   <link rel='stylesheet' href='<?= asset('css/dashboard.css') ?>'>
   <!-- DataTables CSS -->
-  <link rel="stylesheet" href="<?= vendor('DataTables-2.1.8/datatables.min.css') ?>">
+  <link rel="stylesheet" href="<?= asset('DataTables-2.1.8/datatables.min.css') ?>">
   <!-- Select2 CSS -->
-  <link rel="stylesheet" href="<?= asset('css/select2.min.css') ?>" />
+  <link rel="stylesheet" href="<?= asset('select2/select2.min.css') ?>" />
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <!-- Estilos específicos de página -->
   <?= $pageStyles ?? '' ?>
@@ -43,11 +43,11 @@ $user = current_user();
       <!--begin::Brand Link-->
       <a href="<?= url('dashboard') ?>" class="brand-link">
         <!--begin::Brand Image-->
-        <img src="<?= assetPublicImages('logito.png') ?>" alt="TAMA Logo" class="brand-image opacity-75 shadow">
+        <img src="<?= assetPublicImages('logito.png') ?>" alt="EMPRESA Logo" class="brand-image opacity-75 shadow">
 
         <!--end::Brand Image-->
         <!--begin::Brand Text-->
-        <span class="brand-text fw-light">TAMA</span>
+        <span class="brand-text fw-light">EMPRESA</span>
         <!--end::Brand Text-->
       </a>
       <!--end::Brand Link-->
@@ -58,7 +58,7 @@ $user = current_user();
     <div class="sidebar-wrapper">
       <!-- Sidebar Menu -->
       <nav class="mt-2">
-        <?php include __DIR__ . '/../partials/sidebar-menu.php'; ?>
+        <?php include RESOURCES_PATH . '/partials/sidebar-menu.php'; ?>
       </nav>
       <!-- /.sidebar-menu -->
     </div>
@@ -82,17 +82,17 @@ $user = current_user();
 <!--end::App Wrapper-->
 
 <!-- jQuery -->
-<script src="<?= jquery('jquery.min.js') ?>"></script>
+<script src="<?= asset('jquery/jquery.min.js') ?>"></script>
 <!-- Moment.js -->
-<script src="<?= vendor('moment/moment.min.js') ?>"></script>
+<script src="<?= asset('moment/moment.min.js') ?>"></script>
 <!-- DataTables -->
-<script src="<?= vendor('DataTables-2.1.8/datatables.min.js') ?>"></script>
+<script src="<?= asset('DataTables-2.1.8/datatables.min.js') ?>"></script>
 <!-- Bootstrap 5 -->
 <script src="<?= bootstrap('js/bootstrap.bundle.min.js') ?>"></script>
 <!-- AdminLTE App -->
-<script src="<?= adminlte('dist/js/adminlte.js') ?>"></script>
+<script src="<?= adminlte('js/adminlte.js') ?>"></script>
 <!-- Select2 -->
-<script src="<?= asset('js/select2.min.js') ?>"></script>
+<script src="<?= asset('select2/select2.min.js') ?>"></script>
 
 <!-- Scripts específicos de página -->
 <?= $pageScripts ?? '' ?>

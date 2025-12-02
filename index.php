@@ -10,7 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TAMA - Sistema de Gestión</title>
+    <title>EMPRESA - Sistema de Gestión</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     
     <!-- CSS Único para Login -->
@@ -34,9 +34,9 @@
         <!-- Header con logo -->
         <header class="login-header">
             <div class="logo-container">
-                <img src="public/img/logito.png" alt="TAMA Logo" class="logo">
+                <img src="public/img/logito.png" alt="EMPRESA Logo" class="logo">
                 <div class="company-info">
-                    <h1>TAMA INGENIEROS</h1>
+                    <h1>EMPRESA INGENIEROS</h1>
                     <p>Sistema de Gestión Documental</p>
                 </div>
             </div>
@@ -133,7 +133,7 @@
                     </form>
                     
                     <div class="card-footer">
-                        <a href="https://tamaingenieros.pe/" target="_blank" class="website-link">
+                        <a href="https://EMPRESAingenieros.pe/" target="_blank" class="website-link">
                             <i class="bi bi-globe"></i>
                             Visitar sitio web
                         </a>
@@ -145,7 +145,7 @@
         <!-- Footer -->
         <footer class="login-footer">
             <div class="footer-content">
-                <p>&copy; <?php echo date('Y'); ?> TAMA INGENIEROS S.A.C. - Sistema de Gestión v2.0</p>
+                <p>&copy; <?php echo date('Y'); ?> EMPRESA INGENIEROS S.A.C. - Sistema de Gestión v2.0</p>
                 <p>Desarrollado por: C. Loayza • J. Sovero • E. Acevedo</p>
             </div>
         </footer>

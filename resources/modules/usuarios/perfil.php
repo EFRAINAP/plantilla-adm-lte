@@ -3,7 +3,7 @@
 $title = 'Administrador de Perfiles';
 // Definir la página principal para control de acceso
 $name_page_principal = '01_AdministrarPerfiles.php';
-require_once BASE_PATH . '/app/core/00_load.php';
+require_once BASE_PATH . '/app/core/load.php';
 
 ob_start();
 ?>
@@ -99,5 +99,4 @@ $pageScripts = '
 <script type="text/javascript" src="' . BASE_URL . '/public/assets/js/usuarios/GestionPerfil.js"></script>
 ';
 
-include __DIR__ . '/../../layouts/main.php';
-?>
+include RESOURCES_PATH . '/layouts/main.php';

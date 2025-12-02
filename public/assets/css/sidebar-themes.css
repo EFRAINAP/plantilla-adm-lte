@@ -1,0 +1,630 @@
+/* ===== TEMAS PARA EL SIDEBAR ===== */
+
+/* Optimización: Prevenir parpadeo en carga inicial */
+.app-sidebar {
+    transition: background-color 0.1s ease, background 0.1s ease !important;
+}
+
+.app-sidebar .nav-link {
+    transition: all 0.1s ease !important;
+}
+
+.app-sidebar .nav-icon {
+    transition: all 0.1s ease !important;
+}
+
+/* Tema por defecto (EXACTAMENTE como el custom.css original) */
+.app-sidebar[data-bs-theme="dark"] {
+    background-color: #1a2b3c !important;
+    border-right: 1px solid #2c3e50;
+}
+
+.app-sidebar[data-bs-theme="dark"] .sidebar-brand {
+    background-color: #1a2b3c;
+    border-bottom: 1px solid #2c3e50;
+}
+
+.app-sidebar[data-bs-theme="dark"] .brand-link {
+    color: #fff !important;
+}
+
+.app-sidebar[data-bs-theme="dark"] .brand-text {
+    color: #fc7702 !important;
+    font-weight: bold;
+}
+
+/* Menu del sidebar - EXACTO al original */
+.app-sidebar[data-bs-theme="dark"] .sidebar-menu .nav-link {
+    color: #ecf0f1 !important;
+    transition: all 0.3s ease;
+}
+
+.app-sidebar[data-bs-theme="dark"] .sidebar-menu .nav-link:hover {
+    background-color: #2c3e50 !important;
+    color: #fc7702 !important;
+}
+
+.app-sidebar[data-bs-theme="dark"] .sidebar-menu .nav-link.active {
+    background-color: #fc7702 !important;
+    color: #fff !important;
+}
+
+.app-sidebar[data-bs-theme="dark"] .sidebar-menu .nav-header {
+    color: #bdc3c7 !important;
+    background-color: transparent;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Iconos del menu - EXACTO al original */
+.app-sidebar[data-bs-theme="dark"] .sidebar-menu .nav-icon {
+    color: #ecf0f1;
+}
+
+.app-sidebar[data-bs-theme="dark"] .sidebar-menu .nav-link:hover .nav-icon {
+    color: #fc7702 !important;
+}
+
+.app-sidebar[data-bs-theme="dark"] .sidebar-menu .nav-link.active .nav-icon {
+    color: #fff !important;
+}
+
+/* Submenus - EXACTO al original */
+.app-sidebar[data-bs-theme="dark"] .sidebar-menu .nav-treeview {
+    background-color: rgba(0,0,0,0.1);
+}
+
+.app-sidebar[data-bs-theme="dark"] .sidebar-menu .nav-treeview .nav-link {
+    color: #bdc3c7 !important;
+}
+
+.app-sidebar[data-bs-theme="dark"] .sidebar-menu .nav-treeview .nav-link:hover {
+    color: #fc7702 !important;
+    background-color: rgba(252, 119, 2, 0.1) !important;
+}
+
+/* Scrollbar personalizado - EXACTO al original */
+.app-sidebar[data-bs-theme="dark"]::-webkit-scrollbar {
+    width: 6px;
+}
+
+.app-sidebar[data-bs-theme="dark"]::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.app-sidebar[data-bs-theme="dark"]::-webkit-scrollbar-thumb {
+    background: #fc7702;
+    border-radius: 3px;
+}
+
+.app-sidebar[data-bs-theme="dark"]::-webkit-scrollbar-thumb:hover {
+    background: #e66a02;
+}
+
+/* Tema azul corporativo mejorado */
+.app-sidebar.theme-blue {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%) !important;
+}
+
+/* OVERRIDE DINÁMICO: Cambia TODOS los #fc7702 del sistema al azul */
+.app-sidebar.theme-blue ~ .app-main .breadcrumb-item.active,
+.app-sidebar.theme-blue ~ .app-main .breadcrumb-item a:hover,
+.app-sidebar.theme-blue ~ .app-main .text-accent,
+.app-sidebar.theme-blue ~ .app-main .btn-accent,
+.app-sidebar.theme-blue ~ .app-header .navbar-nav .nav-link:hover {
+    color: #3498db !important;
+}
+
+.app-sidebar.theme-blue ~ .app-main .bg-accent,
+.app-sidebar.theme-blue ~ .app-main .btn-accent {
+    background-color: #3498db !important;
+    border-color: #3498db !important;
+}
+
+.app-sidebar.theme-blue ~ .app-main .btn-accent:hover {
+    background-color: #2980b9 !important;
+    border-color: #2980b9 !important;
+}
+
+.app-sidebar.theme-blue .nav-link {
+    color: #ecf0f1 !important;
+    transition: all 0.3s ease;
+}
+
+.app-sidebar.theme-blue .nav-link:hover {
+    background-color: rgba(52, 152, 219, 0.2) !important;
+    color: #3498db !important;
+    transform: translateX(3px);
+    box-shadow: inset 3px 0 0 #3498db;
+}
+
+.app-sidebar.theme-blue .nav-link.active {
+    background-color: #3498db !important;
+    color: #ffffff !important;
+    font-weight: 600;
+    box-shadow: inset 4px 0 0 #2980b9, 0 2px 8px rgba(52, 152, 219, 0.3);
+    border-left: 4px solid #2980b9;
+}
+
+.app-sidebar.theme-blue .nav-icon {
+    color: #bdc3c7;
+    transition: all 0.3s ease;
+}
+
+.app-sidebar.theme-blue .nav-link:hover .nav-icon {
+    color: #3498db !important;
+    transform: scale(1.1);
+}
+
+.app-sidebar.theme-blue .nav-link.active .nav-icon {
+    color: #ffffff !important;
+    transform: scale(1.1);
+}
+
+.app-sidebar.theme-blue .sidebar-brand {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    border-bottom: 2px solid #3498db;
+    box-shadow: 0 2px 4px rgba(52, 152, 219, 0.2);
+}
+
+.app-sidebar.theme-blue .brand-link {
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+.app-sidebar.theme-blue .brand-text {
+    color: #3498db !important;
+    font-weight: bold;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Scrollbar personalizado para tema azul */
+.app-sidebar.theme-blue::-webkit-scrollbar-thumb {
+    background: #3498db !important;
+}
+
+.app-sidebar.theme-blue::-webkit-scrollbar-thumb:hover {
+    background: #2980b9 !important;
+}
+
+
+
+
+
+/* Tema rojo corporativo mejorado */
+.app-sidebar.theme-red {
+    background: linear-gradient(135deg, #c0392b 0%, #e74c3c 100%) !important;
+}
+
+/* OVERRIDE DINÁMICO: Cambia TODOS los #fc7702 del sistema al rojo */
+.app-sidebar.theme-red ~ .app-main .breadcrumb-item.active,
+.app-sidebar.theme-red ~ .app-main .breadcrumb-item a:hover,
+.app-sidebar.theme-red ~ .app-main .text-accent,
+.app-sidebar.theme-red ~ .app-main .btn-accent,
+.app-sidebar.theme-red ~ .app-header .navbar-nav .nav-link:hover {
+    color: #e74c3c !important;
+}
+
+.app-sidebar.theme-red ~ .app-main .bg-accent,
+.app-sidebar.theme-red ~ .app-main .btn-accent {
+    background-color: #e74c3c !important;
+    border-color: #e74c3c !important;
+}
+
+.app-sidebar.theme-red ~ .app-main .btn-accent:hover {
+    background-color: #c0392b !important;
+    border-color: #c0392b !important;
+}
+
+.app-sidebar.theme-red .nav-link {
+    color: #ecf0f1 !important;
+    transition: all 0.3s ease;
+}
+
+.app-sidebar.theme-red .nav-link:hover {
+    background-color: rgba(231, 76, 60, 0.2) !important;
+    color: #e74c3c !important;
+    transform: translateX(3px);
+    box-shadow: inset 3px 0 0 #e74c3c;
+}
+
+.app-sidebar.theme-red .nav-link.active {
+    background-color: #e74c3c !important;
+    color: #ffffff !important;
+    font-weight: 600;
+    box-shadow: inset 4px 0 0 #c0392b, 0 2px 8px rgba(231, 76, 60, 0.3);
+    border-left: 4px solid #c0392b;
+}
+
+.app-sidebar.theme-red .nav-icon {
+    color: #bdc3c7;
+    transition: all 0.3s ease;
+}
+
+.app-sidebar.theme-red .nav-link:hover .nav-icon {
+    color: #e74c3c !important;
+    transform: scale(1.1);
+}
+
+.app-sidebar.theme-red .nav-link.active .nav-icon {
+    color: #ffffff !important;
+    transform: scale(1.1);
+}
+
+.app-sidebar.theme-red .sidebar-brand {
+    background: linear-gradient(135deg, #c0392b 0%, #e74c3c 100%);
+    border-bottom: 2px solid #e74c3c;
+    box-shadow: 0 2px 4px rgba(231, 76, 60, 0.2);
+}
+
+.app-sidebar.theme-red .brand-link {
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+.app-sidebar.theme-red .brand-text {
+    color: #e74c3c !important;
+    font-weight: bold;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Scrollbar personalizado para tema rojo */
+.app-sidebar.theme-red::-webkit-scrollbar-thumb {
+    background: #e74c3c !important;
+}
+
+.app-sidebar.theme-red::-webkit-scrollbar-thumb:hover {
+    background: #c0392b !important;
+}
+
+
+
+/* Tema rosa elegante mejorado */
+.app-sidebar.theme-pink {
+    background: linear-gradient(135deg, #ad5389 0%, #3c1053 100%) !important;
+}
+
+/* OVERRIDE DINÁMICO: Cambia TODOS los #fc7702 del sistema al rosa */
+.app-sidebar.theme-pink ~ .app-main .breadcrumb-item.active,
+.app-sidebar.theme-pink ~ .app-main .breadcrumb-item a:hover,
+.app-sidebar.theme-pink ~ .app-main .text-accent,
+.app-sidebar.theme-pink ~ .app-main .btn-accent,
+.app-sidebar.theme-pink ~ .app-header .navbar-nav .nav-link:hover {
+    color: #e91e63 !important;
+}
+
+.app-sidebar.theme-pink ~ .app-main .bg-accent,
+.app-sidebar.theme-pink ~ .app-main .btn-accent {
+    background-color: #e91e63 !important;
+    border-color: #e91e63 !important;
+}
+
+.app-sidebar.theme-pink ~ .app-main .btn-accent:hover {
+    background-color: #ad5389 !important;
+    border-color: #ad5389 !important;
+}
+
+.app-sidebar.theme-pink .nav-link {
+    color: #ecf0f1 !important;
+    transition: all 0.3s ease;
+}
+
+.app-sidebar.theme-pink .nav-link:hover {
+    background-color: rgba(233, 30, 99, 0.2) !important;
+    color: #e91e63 !important;
+    transform: translateX(3px);
+    box-shadow: inset 3px 0 0 #e91e63;
+}
+
+.app-sidebar.theme-pink .nav-link.active {
+    background-color: #e91e63 !important;
+    color: #ffffff !important;
+    font-weight: 600;
+    box-shadow: inset 4px 0 0 #ad5389, 0 2px 8px rgba(233, 30, 99, 0.3);
+    border-left: 4px solid #ad5389;
+}
+
+.app-sidebar.theme-pink .nav-icon {
+    color: #bdc3c7;
+    transition: all 0.3s ease;
+}
+
+.app-sidebar.theme-pink .nav-link:hover .nav-icon {
+    color: #e91e63 !important;
+    transform: scale(1.1);
+}
+
+.app-sidebar.theme-pink .nav-link.active .nav-icon {
+    color: #ffffff !important;
+    transform: scale(1.1);
+}
+
+.app-sidebar.theme-pink .sidebar-brand {
+    background: linear-gradient(135deg, #ad5389 0%, #3c1053 100%);
+    border-bottom: 2px solid #e91e63;
+    box-shadow: 0 2px 4px rgba(233, 30, 99, 0.2);
+}
+
+.app-sidebar.theme-pink .brand-link {
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+.app-sidebar.theme-pink .brand-text {
+    color: #e91e63 !important;
+    font-weight: bold;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Scrollbar personalizado para tema rosa */
+.app-sidebar.theme-pink::-webkit-scrollbar-thumb {
+    background: #e91e63 !important;
+}
+
+.app-sidebar.theme-pink::-webkit-scrollbar-thumb:hover {
+    background: #ad5389 !important;
+}
+
+
+
+/* Tema gradiente sofisticado mejorado */
+.app-sidebar.theme-rainbow {
+    background: linear-gradient(135deg, #283048 0%, #859398 100%) !important;
+}
+
+/* OVERRIDE DINÁMICO: Cambia TODOS los #fc7702 del sistema al gris sofisticado */
+.app-sidebar.theme-rainbow ~ .app-main .breadcrumb-item.active,
+.app-sidebar.theme-rainbow ~ .app-main .breadcrumb-item a:hover,
+.app-sidebar.theme-rainbow ~ .app-main .text-accent,
+.app-sidebar.theme-rainbow ~ .app-main .btn-accent,
+.app-sidebar.theme-rainbow ~ .app-header .navbar-nav .nav-link:hover {
+    color: #95a5a6 !important;
+}
+
+.app-sidebar.theme-rainbow ~ .app-main .bg-accent,
+.app-sidebar.theme-rainbow ~ .app-main .btn-accent {
+    background-color: #95a5a6 !important;
+    border-color: #95a5a6 !important;
+}
+
+.app-sidebar.theme-rainbow ~ .app-main .btn-accent:hover {
+    background-color: #7f8c8d !important;
+    border-color: #7f8c8d !important;
+}
+
+.app-sidebar.theme-rainbow .nav-link {
+    color: #ecf0f1 !important;
+    transition: all 0.3s ease;
+}
+
+.app-sidebar.theme-rainbow .nav-link:hover {
+    background-color: rgba(149, 165, 166, 0.2) !important;
+    color: #95a5a6 !important;
+    transform: translateX(3px);
+    box-shadow: inset 3px 0 0 #95a5a6;
+}
+
+.app-sidebar.theme-rainbow .nav-link.active {
+    background-color: #95a5a6 !important;
+    color: #ffffff !important;
+    font-weight: 600;
+    box-shadow: inset 4px 0 0 #7f8c8d, 0 2px 8px rgba(149, 165, 166, 0.3);
+    border-left: 4px solid #7f8c8d;
+}
+
+.app-sidebar.theme-rainbow .nav-icon {
+    color: #bdc3c7;
+    transition: all 0.3s ease;
+}
+
+.app-sidebar.theme-rainbow .nav-link:hover .nav-icon {
+    color: #95a5a6 !important;
+    transform: scale(1.1);
+}
+
+.app-sidebar.theme-rainbow .nav-link.active .nav-icon {
+    color: #ffffff !important;
+    transform: scale(1.1);
+}
+
+.app-sidebar.theme-rainbow .sidebar-brand {
+    background: linear-gradient(135deg, #283048 0%, #859398 100%);
+    border-bottom: 2px solid #95a5a6;
+    box-shadow: 0 2px 4px rgba(149, 165, 166, 0.2);
+}
+
+.app-sidebar.theme-rainbow .brand-link {
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+.app-sidebar.theme-rainbow .brand-text {
+    color: #95a5a6 !important;
+    font-weight: bold;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Scrollbar personalizado para tema sofisticado */
+.app-sidebar.theme-rainbow::-webkit-scrollbar-thumb {
+    background: #95a5a6 !important;
+}
+
+.app-sidebar.theme-rainbow::-webkit-scrollbar-thumb:hover {
+    background: #7f8c8d !important;
+}
+
+
+
+/* Tema tecnológico profesional mejorado */
+.app-sidebar.theme-cyber {
+    background: linear-gradient(135deg, #1a252f 0%, #2d3748 100%) !important;
+    border-right: 2px solid #4299e1;
+}
+
+/* OVERRIDE DINÁMICO: Cambia TODOS los #fc7702 del sistema al azul tecnológico */
+.app-sidebar.theme-cyber ~ .app-main .breadcrumb-item.active,
+.app-sidebar.theme-cyber ~ .app-main .breadcrumb-item a:hover,
+.app-sidebar.theme-cyber ~ .app-main .text-accent,
+.app-sidebar.theme-cyber ~ .app-main .btn-accent,
+.app-sidebar.theme-cyber ~ .app-header .navbar-nav .nav-link:hover {
+    color: #4299e1 !important;
+}
+
+.app-sidebar.theme-cyber ~ .app-main .bg-accent,
+.app-sidebar.theme-cyber ~ .app-main .btn-accent {
+    background-color: #4299e1 !important;
+    border-color: #4299e1 !important;
+}
+
+.app-sidebar.theme-cyber ~ .app-main .btn-accent:hover {
+    background-color: #3182ce !important;
+    border-color: #3182ce !important;
+}
+
+.app-sidebar.theme-cyber .nav-link {
+    color: #e2e8f0 !important;
+    transition: all 0.3s ease;
+}
+
+.app-sidebar.theme-cyber .nav-link:hover {
+    background-color: rgba(66, 153, 225, 0.2) !important;
+    color: #4299e1 !important;
+    transform: translateX(3px);
+    box-shadow: inset 3px 0 0 #4299e1;
+}
+
+.app-sidebar.theme-cyber .nav-link.active {
+    background-color: #4299e1 !important;
+    color: #ffffff !important;
+    font-weight: 600;
+    box-shadow: inset 4px 0 0 #3182ce, 0 2px 8px rgba(66, 153, 225, 0.3);
+    border-left: 4px solid #3182ce;
+}
+
+.app-sidebar.theme-cyber .nav-icon {
+    color: #cbd5e0;
+    transition: all 0.3s ease;
+}
+
+.app-sidebar.theme-cyber .nav-link:hover .nav-icon {
+    color: #4299e1 !important;
+    transform: scale(1.1);
+}
+
+.app-sidebar.theme-cyber .nav-link.active .nav-icon {
+    color: #ffffff !important;
+    transform: scale(1.1);
+}
+
+.app-sidebar.theme-cyber .sidebar-brand {
+    background: linear-gradient(135deg, #1a252f 0%, #2d3748 100%);
+    border-bottom: 2px solid #4299e1;
+    box-shadow: 0 2px 4px rgba(66, 153, 225, 0.2);
+}
+
+.app-sidebar.theme-cyber .brand-link {
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+.app-sidebar.theme-cyber .brand-text {
+    color: #4299e1 !important;
+    font-weight: bold;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Scrollbar personalizado para tema tecnológico */
+.app-sidebar.theme-cyber::-webkit-scrollbar-thumb {
+    background: #4299e1 !important;
+}
+
+.app-sidebar.theme-cyber::-webkit-scrollbar-thumb:hover {
+    background: #3182ce !important;
+}
+
+
+
+
+
+/* ===== SELECTOR DE TEMAS EN MI PERFIL ===== */
+.profile-theme-selector {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.profile-theme-selector h6 {
+    margin: 0 0 15px 0;
+    color: #495057;
+    font-weight: 600;
+}
+
+.theme-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.theme-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+}
+
+.theme-option:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.theme-option.active {
+    border-color: #007bff;
+    background: #e3f2fd;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,123,255,0.3);
+}
+
+.theme-preview {
+    width: 80px;
+    height: 50px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    border: 1px solid rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.theme-preview::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.1) 50%, transparent 60%);
+}
+
+.theme-name {
+    font-size: 12px;
+    font-weight: 500;
+    color: #495057;
+    text-align: center;
+}
+
+/* Colores de vista previa de los temas */
+.theme-preview[data-theme="dark"] { background: linear-gradient(135deg, #1a2b3c, #2c3e50); }
+.theme-preview[data-theme="blue"] { background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); }
+.theme-preview[data-theme="red"] { background: linear-gradient(135deg, #c0392b 0%, #e74c3c 100%); }
+.theme-preview[data-theme="pink"] { background: linear-gradient(135deg, #ad5389 0%, #3c1053 100%); }
+.theme-preview[data-theme="rainbow"] { background: linear-gradient(135deg, #283048 0%, #859398 100%); }
+.theme-preview[data-theme="cyber"] { background: linear-gradient(135deg, #1a252f 0%, #2d3748 100%); border: 1px solid #4299e1; }

@@ -62,7 +62,7 @@ sistema-new/
 
 4. **Configurar servidor web**
    - Asegúrate de que Apache esté ejecutándose
-   - Accede a: `http://localhost/sistema-new/public/`
+   - Accede a: `http://localhost/plantilla-adm-lte/public/`
 
 ## 🎯 Uso
 

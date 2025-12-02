@@ -23,9 +23,9 @@ $(document).ready(function() {
 				1: "<span class='badge bg-success' style='height: 24px; display: inline-flex; align-items: center;'>Habilitado</span>"
 				};return estados[data] || "";}},
 			{data: null, render: function(data, type, row) {  
-				return 	'<a href="05_CopiarPerfil.php?perfil=' + row.perfil + '" class="btn btn-success"> <i class="bi bi-clipboard"></i></a>' +
-						'<a href="' + BASE_URL + '/usuarios/perfiles/agregar/editar_perfil?perfil=' + row.perfil + '" class="btn btn-warning"> <i class="bi bi-pencil"></i></a>' +
-						'<button class="btn btn-danger eliminar-perfil"> <i class="bi bi-trash"></i></button>';}}				
+				return 	'<a href="05_CopiarPerfil.php?perfil=' + row.perfil + '" class="btn btn-success btn-sm"> <i class="bi bi-clipboard"></i></a>' +
+						'<a href="' + BASE_URL + '/usuarios/perfiles/agregar/editar_perfil?perfil=' + row.perfil + '" class="btn btn-warning btn-sm"> <i class="bi bi-pencil"></i></a>' +
+						'<button class="btn btn-danger eliminar-perfil btn-sm"> <i class="bi bi-trash"></i></button>';}}				
 		],
 		deferRender: true,
 		dom: "Brtip",

@@ -4,13 +4,21 @@ $title = $title ?? 'Sistema Administrativo';
 // obtener datos del usuario actual
 $user = current_user();
 
+$user = [
+    'name' => $user['name'] ?? 'Usuario',
+    'area' => $user['area'] ?? 'Área Desconocida',
+    'last_login' => $user['last_login'] ?? 'Nunca',
+    'email' => $user['email'] ?? 'No registrado',
+    'image' => assetPublicImages( '/uploads/' . ($user['image'] ?? '3-1.png')),
+];
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title><?= htmlspecialchars($title) ?> | TAMA</title>
+  <title><?= htmlspecialchars($title) ?> | EMPRESA</title>
   <link rel="icon" href="<?= assetPublicImages('favicon.ico') ?>" type="image/x-icon">
 
   <!-- Google Font: Source Sans Pro -->
@@ -18,17 +26,23 @@ $user = current_user();
   <!-- Font Awesome -->
   <link rel="stylesheet" href="<?= fontawesome('css/all.min.css') ?>">
   <!-- Bootstrap Icons (AdminLTE 4 requirement) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="<?= asset('bootstrap-icons/bootstrap-icons.css') ?>">
+  
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="<?= asset('DataTables-2.1.8/datatables.min.css') ?>">
+  <link rel="stylesheet" href="<?= asset('bootstrap/css/bootstrap.css') ?>">
+  <!-- Select2 CSS -->
+  <link rel="stylesheet" href="<?= asset('select2/select2.min.css') ?>" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- Driver.js CSS y JS (CDN) -->
+  <link rel="stylesheet" href="<?= asset('css/tour.css') ?>" />
+  <script src="https://cdn.jsdelivr.net/npm/driver.js@latest/dist/driver.js.iife.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/driver.js@latest/dist/driver.css"/>
+    <!-- Custom CSS -->
+  <link rel="stylesheet" href="<?= asset('css/add_css.css') ?>">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?= adminlte('css/adminlte.css') ?>">
-  <!-- Custom CSS -->
   <link rel="stylesheet" href="<?= asset('css/custom.css') ?>">
-  <link rel='stylesheet' href='<?= asset('css/dashboard.css') ?>'>
-  <!-- DataTables CSS -->
-  <link rel="stylesheet" href="<?= vendor('DataTables-2.1.8/datatables.min.css') ?>">
-  <!-- Select2 CSS -->
-  <link rel="stylesheet" href="<?= asset('css/select2.min.css') ?>" />
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <!-- Estilos específicos de página -->
   <?= $pageStyles ?? '' ?>
 </head>
@@ -66,6 +80,12 @@ $user = current_user();
           </a>
         </li>
 
+        <li class="nav-item">
+          <button id="btnTour" class="btn btn-warning btn-sm mt-1 mb-1 me-2" title="Iniciar Tour">Tour <i class="bi bi-info-circle"></i>
+          </button>
+          
+        </li>
+
         <!-- Messages Dropdown Menu -->
         <li class="nav-item dropdown">
           <a class="nav-link" data-bs-toggle="dropdown" href="#">
@@ -77,7 +97,7 @@ $user = current_user();
               <!--begin::Message-->
               <div class="d-flex">
                 <div class="flex-shrink-0">
-                  <img src="<?= adminlte('img/user1-128x128.jpg') ?>" alt="User Avatar" class="img-size-50 rounded-circle me-3">
+                  <img src="<?= $user['image'] ?>" alt="User Avatar" class="img-size-50 rounded-circle me-3">
                 </div>
                 <div class="flex-grow-1">
                   <h3 class="dropdown-item-title">
@@ -135,7 +155,7 @@ $user = current_user();
         <li class="nav-item dropdown user-menu">
           <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
             <img
-              src="<?= adminlte('img/user2-160x160.jpg') ?>"
+              src="<?= $user['image'] ?>"
               class="user-image rounded-circle shadow"
               alt="User Image"
             />
@@ -145,7 +165,7 @@ $user = current_user();
             <!--begin::User Image-->
             <li class="user-header text-bg-primary">
               <img
-                src="<?= adminlte('img/user2-160x160.jpg') ?>"
+                src="<?= $user['image'] ?>"
                 class="rounded-circle shadow"
                 alt="User Image"
               />
@@ -168,7 +188,7 @@ $user = current_user();
             <!--end::Menu Body-->
             <!--begin::Menu Footer-->
             <li class="user-footer">
-              <a href="#" class="btn btn-default btn-flat">Profile</a>
+              <a href="<?= url('mi-perfil') ?>" class="btn btn-default btn-flat">Profile</a>
               <a href="<?= url('app/auth/logout.php') ?>" class="btn btn-default btn-flat float-end">Sign out</a>
             </li>
             <!--end::Menu Footer-->
@@ -189,11 +209,11 @@ $user = current_user();
       <!--begin::Brand Link-->
       <a href="<?= url('dashboard') ?>" class="brand-link">
         <!--begin::Brand Image-->
-        <img src="<?= assetPublicImages('logito.png') ?>" alt="TAMA Logo" class="brand-image opacity-75 shadow">
+        <img src="<?= assetPublicImages('logito.png') ?>" alt="EMPRESA Logo" class="brand-image opacity-75 shadow">
 
         <!--end::Brand Image-->
         <!--begin::Brand Text-->
-        <span class="brand-text fw-light">TAMA</span>
+        <span class="brand-text fw-light">EMPRESA</span>
         <!--end::Brand Text-->
       </a>
       <!--end::Brand Link-->
@@ -204,7 +224,7 @@ $user = current_user();
     <div class="sidebar-wrapper">
       <!-- Sidebar Menu -->
       <nav class="mt-2">
-        <?php include __DIR__ . '/../partials/sidebar-menu.php'; ?>
+        <?php include RESOURCES_PATH . '/partials/sidebar-menu.php'; ?>
       </nav>
       <!-- /.sidebar-menu -->
     </div>
@@ -250,11 +270,11 @@ $user = current_user();
   <footer class="app-footer">
     <!--begin::To the end-->
     <div class="float-end d-none d-sm-inline">
-      <b>Version</b> Adm LTE 4 Tama Version 2.0
+      <b>Version</b> Adm LTE 4 EMPRESA Version 2.0
     </div>
     <!--end::To the end-->
     <!--begin::Copyright-->
-    <strong>Copyright &copy; 2025 <a href="https://tamaingenieros.pe" target="_blank">TAMA Ingenieros</a>.</strong>
+    <strong>Copyright &copy; 2025 <a href="https://tamaingenieros.pe" target="_blank">EMPRESA Ingenieros</a>.</strong>
     All rights reserved.
     <!--end::Copyright-->
   </footer>
@@ -263,7 +283,7 @@ $user = current_user();
 <!--end::App Wrapper-->
 
 <!-- jQuery -->
-<script src="<?= jquery('jquery.min.js') ?>"></script>
+<script src="<?= asset('jquery/jquery.min.js') ?>"></script>
 <!-- Moment.js -->
 <script src="<?= asset('moment/moment.min.js') ?>"></script>
 <!-- DataTables -->
@@ -273,7 +293,7 @@ $user = current_user();
 <!-- AdminLTE App -->
 <script src="<?= adminlte('js/adminlte.js') ?>"></script>
 <!-- Select2 -->
-<script src="<?= asset('js/select2.min.js') ?>"></script>
+<script src="<?= asset('select2/select2.min.js') ?>"></script>
 
 <!-- Scripts específicos de página -->
 <?= $pageScripts ?? '' ?>

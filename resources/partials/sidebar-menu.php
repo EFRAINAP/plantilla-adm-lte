@@ -5,7 +5,7 @@
 $menu = [
     [
         'title' => 'Dashboard', 
-        'icon' => 'fas fa-tachometer-alt',
+        'icon' => 'fa-solid fa-gauge',
         'route' => 'dashboard',
         'permission' => null // Siempre visible para usuarios logueados
     ],
@@ -17,209 +17,24 @@ $menu = [
         'children' => [
             [
                 'title' => 'Gestión', 
-                'route' => 'usuarios', 
+                'route' => 'sistema/usuarios', 
                 'icon' => 'fas fa-user-cog',
                 'permission' => '01_AdministrarUsuarios.php'
             ],
             [
                 'title' => 'Perfiles', 
-                'route' => 'usuarios/perfiles', 
-                'icon' => 'fas fa-user-shield',
+                'route' => 'sistema/usuarios/perfiles', 
+                'icon' => 'fa-solid fa-users',
                 'permission' => '01_AdministrarPerfiles.php'
             ],
         ]
     ],
-    [
-        'title' => 'Documentos ISO',
-        'icon' => 'fas fa-file-alt',
-        'permission' => ['01_ListadoDocumentosTransversales.php', '01_ListadoDocumentos.php', '03_AdministrarDocumentos.php'],
-        'children' => [
-            [
-                'title' => 'Transversales', 
-                'route' => 'iso/transversales',
-                'permission' => '01_ListadoDocumentosTransversales.php'
-            ],
-            [
-                'title' => 'Asignados', 
-                'route' => 'iso/asignados',
-                'permission' => '01_ListadoDocumentos.php'
-            ],
-            [
-                'title' => 'Gestionar', 
-                'route' => 'iso/gestionar',
-                'permission' => '03_AdministrarDocumentos.php'
-            ],
-        ]
-    ],
-    [
-        'title' => 'Biblioteca Virtual',
-        'icon' => 'fas fa-book',
-        'permission' => ['01_ListadoBiblioteca.php', '03_AdministrarBiblioteca.php'],
-        'children' => [
-            [
-                'title' => 'Listado', 
-                'route' => 'biblioteca/listado',
-                'permission' => '01_ListadoBiblioteca.php'
-            ],
-            [
-                'title' => 'Administrar', 
-                'route' => 'biblioteca/administrar',
-                'permission' => '03_AdministrarBiblioteca.php'
-            ],
-        ]
-    ],
-    [
-        'title' => 'Manual de Funciones',
-        'icon' => 'fas fa-cogs',
-        'permission' => '01_ManualFunciones.php',
-        'children' => [
-            [
-                'title' => 'Ver Manual', 
-                'route' => 'manual/funciones',
-                'permission' => '01_ManualFunciones.php'
-            ],
-        ]
-    ],
-    [
-        'title' => 'Gestión Tareas',
-        'icon' => 'fas fa-clock',
-        'permission' => ['01_AdministrarTareas.php', '01_AdministrarProgramacion.php', '01_CalendarioTama.php'],
-        'children' => [
-            [
-                'title' => 'Calendario', 
-                'route' => 'calendario/tama',
-                'permission' => '01_CalendarioTama.php'
-            ],
-            [
-                'title' => 'Tareas', 
-                'route' => 'tareas/administrar',
-                'permission' => '01_AdministrarTareas.php'
-            ],
-            [
-                'title' => 'Programación', 
-                'route' => 'programacion/administrar',
-                'permission' => '01_AdministrarProgramacion.php'
-            ],
-            [
-                'title' => 'Ver Programación', 
-                'route' => 'programacion/visualizar',
-                'permission' => '09_VisualizarProgramacion.php'
-            ],
-            [
-                'title' => 'Alertas', 
-                'route' => 'alertas/programa',
-                'permission' => '01_AlertaPrograma.php'
-            ],
-        ]
-    ],
-    [
-        'title' => 'Capacitaciones',
-        'icon' => 'fas fa-graduation-cap',
-        'permission' => ['01_AdministrarCapacitaciones.php', '06_AlertaCapacitacionesTotal.php', '06_AlertaCapacitacionesProceso.php'],
-        'children' => [
-            [
-                'title' => 'Administrar', 
-                'route' => 'capacitaciones/administrar',
-                'permission' => '01_AdministrarCapacitaciones.php'
-            ],
-            [
-                'title' => 'Alertas Total', 
-                'route' => 'capacitaciones/alertas-total',
-                'permission' => '06_AlertaCapacitacionesTotal.php'
-            ],
-            [
-                'title' => 'Alertas Proceso', 
-                'route' => 'capacitaciones/alertas-proceso',
-                'permission' => '06_AlertaCapacitacionesProceso.php'
-            ],
-        ]
-    ],
-    [
-        'title' => 'Gestión Dosier',
-        'icon' => 'fas fa-folder',
-        'permission' => ['01_AdministrarDosier.php', '02_AdmPQR.php', '02_AdmWPS.php', '02_AdmWPQ.php', '02_AdmRGC.php'],
-        'children' => [
-            [
-                'title' => 'Administrar', 
-                'route' => 'dosier/administrar',
-                'permission' => '01_AdministrarDosier.php'
-            ],
-            [
-                'title' => 'PQR', 
-                'route' => 'dosier/pqr',
-                'permission' => '02_AdmPQR.php'
-            ],
-            [
-                'title' => 'WPS', 
-                'route' => 'dosier/wps',
-                'permission' => '02_AdmWPS.php'
-            ],
-            [
-                'title' => 'WPQ', 
-                'route' => 'dosier/wpq',
-                'permission' => '02_AdmWPQ.php'
-            ],
-            [
-                'title' => 'RGC', 
-                'route' => 'dosier/rgc',
-                'permission' => '02_AdmRGC.php'
-            ],
-        ]
-    ],
-    [
-        'title' => 'Consumibles',
-        'icon' => 'fas fa-box',
-        'permission' => ['01_AdministrarConsumibles.php', '02_VerConsumibles.php'],
-        'children' => [
-            [
-                'title' => 'Administrar', 
-                'route' => 'consumibles/administrar',
-                'permission' => '01_AdministrarConsumibles.php'
-            ],
-            [
-                'title' => 'Ver', 
-                'route' => 'consumibles/ver',
-                'permission' => '02_VerConsumibles.php'
-            ],
-        ]
-    ],
-    [
-        'title' => 'SAC - SNC',
-        'icon' => 'fas fa-sync-alt',
-        'permission' => ['01_ListadoSAC.php', '02_AdministrarSAC.php', '03_ListadoSNC.php', '04_AdministrarSNC.php', '05_Dashboard.php'],
-        'children' => [
-            [
-                'title' => 'Dashboard', 
-                'route' => 'sac-snc/dashboard',
-                'permission' => '05_Dashboard.php'
-            ],
-            [
-                'title' => 'Listado SAC', 
-                'route' => 'sac-snc/listado-sac',
-                'permission' => '01_ListadoSAC.php'
-            ],
-            [
-                'title' => 'Administrar SAC', 
-                'route' => 'sac-snc/administrar-sac',
-                'permission' => '02_AdministrarSAC.php'
-            ],
-            [
-                'title' => 'Listado SNC', 
-                'route' => 'sac-snc/listado-snc',
-                'permission' => '03_ListadoSNC.php'
-            ],
-            [
-                'title' => 'Administrar SNC', 
-                'route' => 'sac-snc/administrar-snc',
-                'permission' => '04_AdministrarSNC.php'
-            ],
-        ]
-    ],
+
     ['separator' => 'Reportes'],
     [
         'title' => 'Reportes',
         'icon' => 'fas fa-chart-bar',
-        'route' => 'reportes',
+        'route' => 'sistema/reportes',
         'permission' => null // Ajustar según tus necesidades
     ],
 ];

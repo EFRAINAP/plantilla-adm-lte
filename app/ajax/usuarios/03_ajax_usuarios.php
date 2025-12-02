@@ -1,6 +1,9 @@
 <?php
-
-require_once(__DIR__ . '/../01_ajax_connection.php');
+// Definir BASE_PATH si no está definido
+if (!defined('BASE_PATH')) {
+    define('BASE_PATH', dirname(__DIR__, 3));
+}
+require_once BASE_PATH . '/app/ajax/ajax_connection.php';
 
 // Definir la cabecera para devolver datos en formato JSON
 header('Content-Type: application/json; charset=UTF-8');
@@ -69,7 +72,7 @@ try {
 
         case 'update':
             // Validar campos requeridos
-            $required = ['name', 'username', 'cargo', 'user_level', 'area', 'proceso', 'estado_user'];
+            $required = ['name', 'username', 'cargo', 'user_level', 'area', 'proceso'];
             foreach ($required as $field) {
                 if (empty($_POST[$field])) {
                     echo json_encode(['error' => true, 'message' => "El campo {$field} es requerido."]);

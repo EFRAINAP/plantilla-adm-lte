@@ -1,0 +1,61 @@
+RewriteEngine On
+
+# ==================== SEGURIDAD (DEBE IR PRIMERO) ====================
+
+# No mostrar archivos .htaccess
+<Files ".htaccess">
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+# -------------- EXCEPCIONES PERMITIDAS (tienen prioridad) --------------
+RewriteRule ^app/auth/authenticate\.php$ app/auth/authenticate.php [L]
+RewriteRule ^app/auth/logout\.php$ app/auth/logout.php [L]  
+RewriteRule ^app/ajax/(.*)\.php$ app/ajax/$1.php [L]
+RewriteRule ^app/function(.*)\.php$ app/function$1.php [L]
+RewriteRule ^app/tools/(.*)\.php$ app/tools/$1.php [L]
+
+# =============== BLOQUEO STEALTH (DEBE IR ANTES DEL ROUTING) ===============
+
+# Bloqueo de carpetas internas
+RewriteRule ^app/?$ public/index.php?404=1 [L]
+RewriteRule ^app/(?!auth/(authenticate|logout)\.php$)(?!ajax/.*\.php$)(?!function.*\.php$)(?!tools/.*\.php$).* public/index.php?404=1 [L]
+
+# Bloqueo directo sin redirecciones de Apache
+RewriteRule ^backend$ backend/index.php [L]
+RewriteRule ^backend/.*$ backend/index.php [L]
+RewriteRule ^api$ api/index.php [L]
+RewriteRule ^api/.*$ api/index.php [L]
+RewriteRule ^config$ public/index.php [L]
+RewriteRule ^config/.*$ public/index.php [L]
+RewriteRule ^vendor$ public/index.php [L]
+RewriteRule ^vendor/.*$ public/index.php [L]
+RewriteRule ^routes(/.*)?$ public/index.php [L]
+RewriteRule ^utils(/.*)?$ public/index.php [L]
+RewriteRule ^docs(/.*)?$ public/index.php [L]
+RewriteRule ^temp(/.*)?$ public/index.php [L]
+RewriteRule ^logs(/.*)?$ public/index.php [L]
+RewriteRule ^\.git(/.*)?$ public/index.php [L]
+RewriteRule ^test(/.*)?$ public/index.php [L]
+RewriteRule ^lib(/.*)?$ public/index.php [L]
+RewriteRule ^resources(/.*)?$ public/index.php [L]
+
+# Bloqueo específico de .env y archivos sensibles
+RewriteRule ^\.env.*$ public/index.php [L]
+RewriteRule ^composer\.(json|lock)$ public/index.php [L]
+RewriteRule ^package\.json$ public/index.php [L]
+RewriteRule ^.*\.(log|sql|lock|md|txt|ini|conf)$ public/index.php [L]
+
+# ==================== ROUTING GENERAL ====================
+
+# Raíz
+RewriteCond %{REQUEST_URI} ^/$
+RewriteRule ^$ public/index.php [L]
+
+# Si no existe archivo o carpeta, ir a index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ public/index.php [QSA,L]
+
+# ==================== OTROS ====================
+Options -Indexes
+DirectorySlash Off

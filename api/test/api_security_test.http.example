@@ -1,0 +1,74 @@
+### Test API Backend con Seguridad - Sistema T&M
+# NOTA: Copia este archivo como api_security_test.http y configura tus credenciales reales
+
+# Variables
+@baseURL = http://localhost/sistema-new/api
+@token = {{login.response.body.data.token}}
+
+### Health Check (Público)
+GET {{baseURL}}/v1/health
+Content-Type: application/json
+
+### Login (Con validación y rate limiting)
+# @name login
+POST {{baseURL}}/v1/auth/login
+Content-Type: application/json
+
+{
+    "username": "TU_USUARIO_AQUI",
+    "password": "TU_PASSWORD_AQUI"
+}
+
+### Perfil del usuario (Requiere autenticación)
+GET {{baseURL}}/v1/auth/profile
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### Listar usuarios (Requiere autenticación)
+GET {{baseURL}}/v1/usuarios
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### Crear usuario (Requiere autenticación + validación)
+POST {{baseURL}}/v1/usuarios
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "name": "Test User",
+    "username": "testuser",
+    "password": "password123",
+    "user_level": 1,
+    "cargo": "Desarrollador",
+    "area": "IT"
+}
+
+### Test Rate Limiting (Ejecutar varias veces seguidas)
+POST {{baseURL}}/v1/auth/login
+Content-Type: application/json
+
+{
+    "username": "wrong",
+    "password": "wrong"
+}
+
+### Test validación (Datos inválidos)
+POST {{baseURL}}/v1/usuarios
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "name": "",
+    "username": "a",
+    "password": "123"
+}
+
+### Renovar token
+POST {{baseURL}}/v1/auth/refresh
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### Logout
+POST {{baseURL}}/v1/auth/logout
+Content-Type: application/json
+Authorization: Bearer {{token}}

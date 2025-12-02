@@ -1,0 +1,105 @@
+/* Background Colors */
+.bg-green { background-color: #A3C86D !important; }
+.bg-blue { background-color: #7ACBEE !important; }
+.bg-light-blue { background-color: #c2e9fa !important; }
+.bg-yellow { background-color: #FDD761 !important; }
+.bg-light-yellow { background-color: #faeabb !important; }
+.bg-red { background-color: #FF7857 !important; }
+
+
+/* Panels */
+.panel-heading {
+  background-color: #f5f5f5;
+  border-bottom: 2px solid #3498DB;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  padding: 15px;
+}
+
+
+/* Datatable y Select2 Styles */
+	.custom-header-font-size thead th {
+		font-size: 16px; /* Tamaño de letra para los títulos */
+	}
+	.custom-data-font-size tbody td {
+		font-size: 14px; /* Tamaño de letra para los datos */
+	}
+	.select2-container--default .select2-selection--single {
+		height: 40px; /* Altura deseada */
+		line-height: 40px; /* Centra verticalmente el texto */
+	}
+	.select2-container--default .select2-selection--single .select2-selection__rendered,
+	.select2-container--default .select2-selection--single .select2-selection__placeholder {
+		line-height: 40px; /* Centra el texto verticalmente */
+	}
+	.select2-container--default .select2-selection--single .select2-selection__arrow {
+		height: 40px; /* Altura del botón de desplegable */
+		padding: 0 8px; /* Ajusta el padding si es necesario */
+	}
+	.caja{/*border:0px none; background: rgba(0, 0, 0, 0) none repeat scroll 0% 0%;*/ width: 98%; font-size: 16px; font-weight: 600; display: block}
+	.low {
+	  color: green;
+	}
+	.high {
+	  color: red;
+	}
+	input[readonly] {
+		background-color: #e9ecef;
+	}
+
+
+div.dt-buttons > .dt-button,
+div.dt-buttons > div.dt-button-split .dt-button {
+	background: var(--bs-btn-bg, #fff) !important;
+	color: var(--bs-btn-color, #212529) !important;
+	border-radius: 8px !important;
+	border: none !important;
+	box-shadow: none !important;
+}
+
+/* Form Controls */
+.form-control {
+  color: #646464;
+  border: 1px solid #e6e6e6;
+  border-radius: 3px;
+  transition: all .15s ease-out;
+}
+
+.form-control:focus {
+  background: #f8f8f8;
+  border-color: #3498DB;
+  outline: 0;
+}
+
+
+
+/* Datatable y Select2 Styles */
+	.custom-header-font-size thead th {
+		font-size: 16px; /* Tamaño de letra para los títulos */
+	}
+	.custom-data-font-size tbody td {
+		font-size: 14px; /* Tamaño de letra para los datos */
+	}
+	.select2-container--default .select2-selection--single {
+		height: 40px; /* Altura deseada */
+		line-height: 40px; /* Centra verticalmente el texto */
+	}
+	.select2-container--default .select2-selection--single .select2-selection__rendered,
+	.select2-container--default .select2-selection--single .select2-selection__placeholder {
+		line-height: 40px; /* Centra el texto verticalmente */
+	}
+	.select2-container--default .select2-selection--single .select2-selection__arrow {
+		height: 40px; /* Altura del botón de desplegable */
+		padding: 0 8px; /* Ajusta el padding si es necesario */
+	}
+	.caja{/*border:0px none; background: rgba(0, 0, 0, 0) none repeat scroll 0% 0%;*/ width: 98%; font-size: 16px; font-weight: 600; display: block}
+	.low {
+	  color: green;
+	}
+	.high {
+	  color: red;
+	}
+	input[readonly] {
+		background-color: #e9ecef;
+	}

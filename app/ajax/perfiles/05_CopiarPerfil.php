@@ -1,24 +1,28 @@
 <?php
+// Definir BASE_PATH si no está definido
+	if (!defined('BASE_PATH')) {
+		define('BASE_PATH', dirname(__DIR__, 3));
+	}
     $page_title = 'Copiar perfil';
     $name_page_principal = '01_AdministrarPerfiles.php';
 	$permiso = 'adicionar';
-	require_once('../01_General/00_load.php');
+	require_once BASE_PATH . '/app/core/load.php';
 		
 	$user = current_user();
     if (!$session->isUserLoggedIn(true)) { 
-        redirect('', false);
+        redirectTo('sistema', false);
     }
 
     // Verificar permisos (los administradores tienen acceso automático)
     if (!has_access($name_page_principal)) {
         $session->msg("d", "No tienes permisos para acceder a esta página. Contacta al administrador.");
-        redirect('dashboard', false);
+        redirectTo('sistema/dashboard', false);
     }
 	
 	// Verificar si el usuario puede adicionar usuarios (administradores tienen acceso automático)
 	if (!has_access_with_permissions($name_page_principal, $permiso)) {
 		echo json_encode(['error' => true, 'message' => 'No tiene permisos para crear perfiles.']);
-		redirect($name_page_principal, false); // Temporal
+		redirectTo('sistema/' . $name_page_principal, false); // Temporal
 	}
 ?>
 

@@ -17,12 +17,8 @@ require_once __DIR__ . '/../vendor/autoload.php';
 // Cargar configuración del sistema
 require_once __DIR__ . '/../app/Config/Config.php';
 
-// carga la conexión a la base de datos
-require_once __DIR__ . '/../app/core/00_load.php';
-
-// Cargar variables de entorno
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
-$dotenv->load();
+// carga la conexión a la base de datos (que ya incluye .env)
+require_once __DIR__ . '/../app/core/load.php';
 
 // Iniciar sesión
 //session_start();
@@ -36,13 +32,64 @@ define('BASE_URL', Config::getBaseUrl());
 define('ASSETS_URL', Config::getAssetsUrl());
 define('ADMINLTE_URL', Config::getAdminLTEUrl());
 
-// Verificación global de sesión para todas las rutas protegidas
+// ==================== CARGAR CONFIGURACIÓN DE RUTAS ====================
+$routeConfig = require_once BASE_PATH . '/config/routes.php';
+
+// Extraer configuración
+$publicRoutes = array_merge(
+    $routeConfig['public_routes'],
+    $routeConfig['auth_exceptions']  // Las excepciones de auth también son públicas
+);
+
+// ==================== SISTEMA DE AUTENTICACIÓN ESCALABLE ====================
+
+/**
+ * Función para verificar si una ruta requiere autenticación
+ */
+function requiresAuth($path, $routeConfig) {
+    // Si está en las excepciones, no requiere auth
+    if (in_array($path, $routeConfig['auth_exceptions'])) {
+        return false;
+    }
+    
+    // Si empieza con algún prefijo protegido, requiere auth
+    foreach ($routeConfig['protected_prefixes'] as $prefix) {
+        if (strpos($path, $prefix) === 0) {
+            return true;
+        }
+    }
+    
+    return false;
+}
+
+/**
+ * Función para obtener la URL de login según el prefijo
+ */
+function getLoginUrl($path, $routeConfig) {
+    $loginMapping = $routeConfig['login_mapping'];
+    
+    // Buscar mapeo específico
+    foreach ($loginMapping as $prefix => $loginUrl) {
+        if ($prefix !== 'default' && strpos($path, $prefix) === 0) {
+            return $loginUrl;
+        }
+    }
+    
+    // Usar default si no encuentra mapeo específico
+    return $loginMapping['default'];
+}
+
+// Verificación inteligente y escalable
 global $session;
-if (!$session || !$session->isUserLoggedIn(true)) { 
-    // Solo redirigir si no estamos ya en el login
-    $currentPath = Config::getCurrentPath();
-    if ($currentPath !== '/' && $currentPath !== '') {
-        redirect('', false);
+$currentPath = Config::getCurrentPath();
+$isPublicRoute = in_array($currentPath, $publicRoutes);
+$needsAuth = requiresAuth($currentPath, $routeConfig);
+
+// Solo verificar autenticación si la ruta la requiere y no es pública
+if ($needsAuth && !$isPublicRoute) {
+    if (!$session || !$session->isUserLoggedIn(true)) {
+        $loginUrl = getLoginUrl($currentPath, $routeConfig);
+        redirectTo($loginUrl, false);
     }
 }
 
@@ -84,10 +131,10 @@ class Router {
         $path = Config::getCurrentPath();
         
         // Si la ruta está vacía, redirigir a dashboard
-        if (empty($path) || $path === '/') {
-            $this->redirect('/dashboard');
-            return;
-        }
+        // if (empty($path) || $path === '/') {
+        //     $this->redirectTo('/dashboard');
+        //     return;
+        // }
         
         // Buscar ruta exacta
         if (isset($this->routes[$method][$path])) {
@@ -108,17 +155,10 @@ class Router {
         
         return null;
     }
-    
-    public function redirect($path, $statusCode = 302) {
-        $url = Config::url($path);
-        http_response_code($statusCode);
-        header("Location: $url");
-        exit;
-    }
 }
 
 /**
- * Función para renderizar vistas
+ * Función para renderizar vistas con layout inteligente
  */
 function renderView($viewPath, $data = []) {
     // Hacer disponibles las variables globales del sistema
@@ -131,21 +171,55 @@ function renderView($viewPath, $data = []) {
     if (file_exists($fullPath)) {
         include $fullPath;
     } else {
-        http_response_code(404);
-        $title = "Página no encontrada";
+        render404();
+    }
+}
+
+/**
+ * Función para renderizar página 404 inteligente
+ */
+function render404() {
+    global $session;
+    http_response_code(404);
+    $currentPath = Config::getCurrentPath();
+    
+    // Determinar si estamos en el sistema o en el sitio público
+    $isSystemArea = (strpos($currentPath, '/sistema') === 0);
+    
+    if ($isSystemArea) {
+        // 404 del sistema interno (con layout main.php)
+        renderView('404', ['title' => 'Página no encontrada - Sistema']);
+    } else {
+        // 404 del sitio público (con layout público)
+        renderView('landing/404', ['title' => 'Página no encontrada']);
+    }
+}
+
+/*
+ * Función para ruta no declarada
+*/
+function routeNotFound() {
+    $title = "Página no encontrada - Sistema";
         ob_start();
         ?>
         <div class="container-fluid">
             <div class="row justify-content-center">
-                <div class="col-md-6">
+                <div class="col-md-8">
                     <div class="error-page text-center">
                         <h2 class="headline text-warning">404</h2>
                         <div class="error-content">
-                            <h3><i class="fas fa-exclamation-triangle text-warning"></i> ¡Oops! Página no encontrada.</h3>
-                            <p>
-                                No pudimos encontrar la página que estás buscando.
-                                Mientras tanto, puedes <a href="<?= Config::url('dashboard') ?>">regresar al dashboard</a> o probar usando el menú de navegación.
+                            <h3><i class="fas fa-exclamation-triangle text-warning"></i> Página no encontrada</h3>
+                            <p class="lead">
+                                La página del sistema que buscas no existe o ha sido movida.vcv
                             </p>
+                            <div class="mt-4">
+                                <a href="<?= Config::url('/sistema/dashboard') ?>" class="btn btn-primary">
+                                    <i class="fas fa-home"></i> Ir al Dashboard
+                                </a>
+                                <a href="javascript:history.back()" class="btn btn-secondary">
+                                    <i class="fas fa-arrow-left"></i> Volver
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -154,12 +228,11 @@ function renderView($viewPath, $data = []) {
         <?php
         $content = ob_get_clean();
         include RESOURCES_PATH . '/layouts/main.php';
-    }
 }
 
 /**
  * Función para respuestas JSON
- */
+*/
 function jsonResponse($data, $statusCode = 200) {
     http_response_code($statusCode);
     header('Content-Type: application/json');
@@ -206,21 +279,21 @@ function adminlte($path) {
  * Función helper para jQuery
  */
 function jquery($path) {
-    return BASE_URL . '/vendor/components/jquery/' . ltrim($path, '/');
+    return BASE_URL . '/public/assets/jquery/' . ltrim($path, '/');
 }
 
 /**
  * Función helper para Bootstrap
  */
 function bootstrap($path) {
-    return BASE_URL . '/vendor/twbs/bootstrap/dist/' . ltrim($path, '/');
+    return BASE_URL . '/public/assets/bootstrap/' . ltrim($path, '/');
 }
 
 /**
  * Función helper para FontAwesome
  */
 function fontawesome($path) {
-    return BASE_URL . '/vendor/fortawesome/font-awesome/' . ltrim($path, '/');
+    return BASE_URL . '/public/assets/font-awesome/' . ltrim($path, '/');
 }
 
 /**
@@ -234,7 +307,7 @@ function vendor($path) {
 $router = new Router();
 
 // Cargar rutas desde archivo separado
-require_once __DIR__ . '/../routes/web.php';
+require_once BASE_PATH . '/routes/web.php';
 
 // Resolución de rutas
 $result = $router->resolve();
@@ -251,6 +324,5 @@ if ($result) {
         }
     }
 } else {
-    // Ruta no encontrada
-    renderView('404');
+    render404();
 }

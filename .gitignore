@@ -1,0 +1,56 @@
+# Composer dependencies
+/vendor/
+
+# Node dependencies (si usas npm/yarn)
+/node_modules/
+
+# Archivos de entorno y configuración sensible
+.env
+.env.local
+.env.*.local
+.env.production
+
+# Archivos de desarrollo
+sdsestructura.txt
+aaestructura.txt
+estructura.txt
+
+# Archivos de log y caché
+*.log
+*.cache
+*.tmp
+
+# Archivos de sistema y editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Archivos generados por el sistema
+/public/assets/js/*.map
+/public/assets/css/*.map
+
+# Backups y archivos temporales
+*.bak
+*.old
+*.orig
+*.save
+
+# Archivos de pruebas y cobertura
+/coverage/
+.phpunit.result.cache
+/backend/test/*_test.http
+!/backend/test/*_test.http.example
+
+# Archivos de pruebas API
+/api/test/*_test.http
+!/api/test/*_test.http.example
+
+# Archivos de base de datos temporales
+*.sqlite
+*.sqlite3
+
+# Otros archivos que no quieres subir
+/public/assets/tmp/
+/Documentos/

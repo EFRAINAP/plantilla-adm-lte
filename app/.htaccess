@@ -1,0 +1,30 @@
+# Protección para carpeta /app/ con excepciones críticas
+# Solo aplicar protección a acceso directo de carpetas, no a archivos específicos
+
+<Files "*">
+    # Permitir archivos de autenticación y AJAX
+    <If "%{REQUEST_URI} =~ m#/app/auth/(authenticate|logout)\.php$#">
+        Require all granted
+    </If>
+    <ElseIf "%{REQUEST_URI} =~ m#/app/ajax/.*\.php$#">
+        Require all granted
+    </ElseIf>
+    <ElseIf "%{REQUEST_URI} =~ m#/app/function.*\.php$#">
+        Require all granted
+    </ElseIf>
+    <ElseIf "%{REQUEST_URI} =~ m#/app/tools/.*\.php$#">
+        Require all granted
+    </ElseIf>
+    # Bloquear acceso directo a carpetas sensibles
+    <Else>
+        # Bloquear acceso directo a otros archivos
+        Require all denied
+        ErrorDocument 403 /sistema-new/public/index.php?404=1
+    </Else>
+</Files>
+
+# Protección de directorios
+Options -Indexes
+
+# Mensaje de error personalizado para carpetas
+DirectoryIndex disabled

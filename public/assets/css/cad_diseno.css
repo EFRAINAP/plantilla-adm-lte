@@ -1,0 +1,113 @@
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mejor estilo para las tablas de cotas */
+.table-cotas {
+    font-size: 0.9rem;
+}
+
+.table-cotas th {
+    background: linear-gradient(135deg, #495057 0%, #6c757d 100%);
+    color: white;
+    border: none;
+    font-weight: 600;
+}
+
+.table-cotas td {
+    vertical-align: middle;
+    border-color: #dee2e6;
+}
+
+/* Estilo para los checkboxes */
+.form-check-input:checked {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+
+/* Mejoras en los badges de progreso */
+.badge {
+    font-size: 0.85rem;
+    /* padding: 0.5rem 0.75rem; */
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.badge.bg-warning {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Estilo para el área de control de selección */
+.bg-light {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%) !important;
+    border: 1px solid #dee2e6;
+}
+
+/* Botones con hover mejorado */
+.btn {
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Cards con mejor sombra */
+.card {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+/* Mejorar el accordion */
+.accordion-button:not(.collapsed) {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    color: white;
+}
+
+.accordion-button:focus {
+    box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+}
+
+/* Progress bar animado */
+.progress-bar-animated {
+    animation: progress-bar-stripes 1s linear infinite;
+}
+
+/* Input focus mejorado */
+.form-control:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Alertas con mejor estilo */
+.alert {
+    border: none;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* Spinner personalizado */
+.spinner-border {
+    border-width: 0.2em;
+}

@@ -99,7 +99,7 @@ $is_admin = ($user_level == 1);
   // Usar el script de tareas pendientes
   $indicadores_tareas = null;
   try {
-    $indicadores_tareas = include( BASE_PATH . '/app/function/indicadores/tareas-pendientes.php');
+    //$indicadores_tareas = include( BASE_PATH . '/app/function/indicadores/tareas-pendientes.php');
   } catch (Exception $e) {
     error_log("Error al cargar indicadores de tareas: " . $e->getMessage());
   }
@@ -165,13 +165,18 @@ $is_admin = ($user_level == 1);
     [
       'type' => 'company',
       'icon' => 'bi-building',
-      'title' => 'TAMA - Líder en Innovación',
+      'title' => 'EMPRESA - Líder en Innovación',
       'message' => 'Construyendo el futuro con tecnología de vanguardia y un equipo excepcional.',
       'color' => 'info'
     ]
   ];
 
 ob_start();
+
+$pageStyles = '
+<link rel="stylesheet" href="' . ASSETS_URL . '/css/dashboard.css">
+';
+
 ?>
 
 <div class="container-fluid">
@@ -189,7 +194,7 @@ ob_start();
                     Bienvenido, <?php echo htmlspecialchars($user_name); ?>
                 </h1>
                 <p class="welcome-subtitle">
-                    Sistema de Gestión Documental TAMA
+                    Sistema de Gestión Documental EMPRESA
                     <?php if ($is_admin): ?>
                     <span class="badge bg-primary ms-2">Administrador</span>
                     <?php endif; ?>
@@ -280,59 +285,143 @@ ob_start();
         </div>
     </div>
 
-    <!-- Estado General de Tareas -->
-    <?php if ($indicadores_tareas && isset($indicadores_tareas['general'])): ?>
-    <div class="tasks-status-section mb-4">
-        <div class="container-fluid">
-        <h3 class="section-title">
-            <i class="bi bi-clipboard-data"></i>
-            Indicadores de Tareas - Estado General
-        </h3>
-        <div class="row">
-            <div class="col-md-6">
-            <?php 
-            $estado = $stats['estado_general'];
-            $estado_config = [
-                'excelente' => ['color' => 'success', 'icon' => 'bi-check-circle-fill', 'titulo' => 'Excelente', 'mensaje' => 'Todas las tareas están al día'],
-                'bueno' => ['color' => 'info', 'icon' => 'bi-info-circle-fill', 'titulo' => 'Bueno', 'mensaje' => 'Pocas tareas pendientes'],
-                'regular' => ['color' => 'warning', 'icon' => 'bi-exclamation-triangle-fill', 'titulo' => 'Regular', 'mensaje' => 'Algunas tareas requieren atención'],
-                'critico' => ['color' => 'danger', 'icon' => 'bi-x-circle-fill', 'titulo' => 'Crítico', 'mensaje' => 'Muchas tareas pendientes'],
-                'sin_datos' => ['color' => 'secondary', 'icon' => 'bi-question-circle', 'titulo' => 'Sin datos', 'mensaje' => 'No hay información disponible']
-            ];
-            $config = $estado_config[$estado] ?? $estado_config['sin_datos'];
-            ?>
-            <div class="alert alert-<?php echo $config['color']; ?> d-flex align-items-center">
-                <i class="<?php echo $config['icon']; ?> me-3" style="font-size: 1.5rem;"></i>
-                <div>
-                <h5 class="alert-heading mb-1"><?php echo $config['titulo']; ?></h5>
-                <p class="mb-0"><?php echo $config['mensaje']; ?></p>
-                </div>
+  <!-- Estado General de Tareas -->
+  <?php if ($indicadores_tareas && isset($indicadores_tareas['general'])): ?>
+  <div class="tasks-status-section mb-4">
+    <div class="container-fluid">
+      
+      <!--h3 class="section-title">
+        <i class="bi bi-clipboard-data"></i>
+        Indicadores de Tareas - Estado General
+      </h3>
+      <div class="row">
+        <div class="col-md-6">
+          <?php 
+          $estado = $stats['estado_general'];
+          $estado_config = [
+            'excelente' => ['color' => 'success', 'icon' => 'bi-check-circle-fill', 'titulo' => 'Excelente', 'mensaje' => 'Todas las tareas están al día'],
+            'bueno' => ['color' => 'info', 'icon' => 'bi-info-circle-fill', 'titulo' => 'Bueno', 'mensaje' => 'Pocas tareas pendientes'],
+            'regular' => ['color' => 'warning', 'icon' => 'bi-exclamation-triangle-fill', 'titulo' => 'Regular', 'mensaje' => 'Algunas tareas requieren atención'],
+            'critico' => ['color' => 'danger', 'icon' => 'bi-x-circle-fill', 'titulo' => 'Crítico', 'mensaje' => 'Muchas tareas pendientes'],
+            'sin_datos' => ['color' => 'secondary', 'icon' => 'bi-question-circle', 'titulo' => 'Sin datos', 'mensaje' => 'No hay información disponible']
+          ];
+          $config = $estado_config[$estado] ?? $estado_config['sin_datos'];
+          ?>
+          <div class="alert alert-<?php echo $config['color']; ?> d-flex align-items-center">
+            <i class="<?php echo $config['icon']; ?> me-3" style="font-size: 1.5rem;"></i>
+            <div>
+              <h5 class="alert-heading mb-1"><?php echo $config['titulo']; ?></h5>
+              <p class="mb-0"><?php echo $config['mensaje']; ?></p>
             </div>
-            </div>
-            <div class="col-md-6">
-            <div class="card">
-                <div class="card-header bg-light">
-                <h6 class="mb-0"><i class="bi bi-graph-up"></i> Resumen General</h6>
-                </div>
-                <div class="card-body">
-                <div class="row text-center">
-                    <div class="col-6">
-                    <div class="display-6 mb-1 text-warning"><?php echo $stats['pending_tasks']; ?></div>
-                    <small class="text-muted">Tareas Pendientes</small>
-                    </div>
-                    <div class="col-6">
-                    <div class="display-6 mb-1 text-<?php echo $config['color']; ?>"><?php echo $stats['eficacia_promedio']; ?>%</div>
-                    <small class="text-muted">Eficacia Promedio</small>
-                    </div>
-                </div>
-                </div>
-            </div>
-            </div>
+          </div>
         </div>
-        
-        <!-- Detalle por proceso (solo si tiene 2+ procesos) -->
-        <?php if ($indicadores_tareas['mostrar_detalle']): ?>
-        <div class="row mt-4">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header bg-light">
+              <h6 class="mb-0"><i class="bi bi-graph-up"></i> Resumen General</h6>
+            </div>
+            <div class="card-body">
+              <div class="row text-center">
+                <div class="col-6">
+                  <div class="display-6 mb-1 text-warning"><?php echo $stats['pending_tasks']; ?></div>
+                  <small class="text-muted">Tareas Pendientes</small>
+                </div>
+                <div class="col-6">
+                  <div class="display-6 mb-1 text-<?php echo $config['color']; ?>"><?php echo $stats['eficacia_promedio']; ?>%</div>
+                  <small class="text-muted">Eficacia Promedio</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div-->
+      
+      <!-- Detalle por área (solo para administradores) -->
+      <?php if (isset($indicadores_tareas['mostrar_areas']) && $indicadores_tareas['mostrar_areas']): ?>
+      <div class="row mt-4">
+        <div class="col-12">
+          <h4 class="mb-3">
+            <i class="bi bi-diagram-3"></i>
+            Indicadores por Área
+          </h4>
+          <?php foreach ($indicadores_tareas['por_area'] as $area): ?>
+          <div class="card mb-4">
+            <div class="card-header bg-light">
+              <h5 class="mb-0">
+                <i class="bi bi-building"></i>
+                <?php echo htmlspecialchars($area['nombre']); ?>
+                <span class="badge bg-info ms-2"><?php echo count($area['procesos']); ?> procesos</span>
+              </h5>
+            </div>
+            <div class="card-body">
+              <!-- Resumen del área -->
+              <div class="row mb-3">
+                <div class="col-md-4">
+                  <div class="text-center">
+                    <div class="h4 mb-1 text-warning"><?php echo $area['total_tareas_pendientes']; ?></div>
+                    <small class="text-muted">Tareas Pendientes</small>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="text-center">
+                    <?php 
+                    $eficacia_area = floatval($area['eficacia']);
+                    $color_area = ($eficacia_area >= 90) ? 'success' : (($eficacia_area >= 70) ? 'warning' : 'danger');
+                    ?>
+                    <div class="h4 mb-1 text-<?php echo $color_area; ?>"><?php echo $area['eficacia']; ?>%</div>
+                    <small class="text-muted">Eficacia del Área</small>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="text-center">
+                    <div class="h4 mb-1 text-info"><?php echo $area['total_tareas_programadas']; ?></div>
+                    <small class="text-muted">Tareas Programadas</small>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Procesos del área -->
+              <?php if (!empty($area['procesos'])): ?>
+              <h6 class="mb-2">Procesos del Área:</h6>
+              <div class="row">
+                <?php foreach ($area['procesos'] as $proceso): ?>
+                <div class="col-md-6 col-lg-4 mb-2">
+                  <div class="card border-dark h-100">
+                    <div class="card-header">
+                      <h6 class="card-title mb-1" style="font-size: 1rem;"><?php echo htmlspecialchars($proceso['nombre']); ?></h6>
+                    </div>
+                    <div class="card-body py-2">
+                      
+                      <div class="row text-center">
+                        <div class="col-6">
+                          <small style="font-size: 1.5rem;" class="text-warning fw-bold"><?php echo $proceso['tareas_pendientes']; ?></small>
+                          <small class="text-muted d-block">Pendientes</small>
+                        </div>
+                        <div class="col-6">
+                          <?php 
+                          $eficacia_proceso = floatval($proceso['eficacia']);
+                          $color_proceso = ($eficacia_proceso >= 90) ? 'success' : (($eficacia_proceso >= 70) ? 'warning' : 'danger');
+                          ?>
+                          <small style="font-size: 1.5rem;" class="text-<?php echo $color_proceso; ?> fw-bold"><?php echo $proceso['eficacia']; ?>%</small>
+                          <small class="text-muted d-block">Eficacia</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <?php endforeach; ?>
+              </div>
+              <?php endif; ?>
+            </div>
+          </div>
+          <?php endforeach; ?>
+        </div>
+      </div>
+      <?php endif; ?>
+      
+      <!-- Detalle por proceso (solo si tiene 2+ procesos y no es vista por áreas) -->
+      <?php if ($indicadores_tareas['mostrar_detalle'] && $is_admin === false ): ?>
+      <div class="row mt-4">
             <div class="col-12">
             <h4 class="mb-3">
                 <i class="bi bi-list-ul"></i>
@@ -342,8 +431,10 @@ ob_start();
                 <?php foreach ($indicadores_tareas['por_proceso'] as $proceso): ?>
                 <div class="col-md-6 col-lg-3 mb-3">
                 <div class="card">
+                    <div class="card-header">
+                    <h6 class="card-title mb-2"><?php echo htmlspecialchars($proceso['nombre']); ?></h6>
+                    </div>
                     <div class="card-body">
-                    <h6 class="card-title"><?php echo htmlspecialchars($proceso['nombre']); ?></h6>
                     <div class="row text-center">
                         <div class="col-6">
                         <div class="h5 mb-1 text-warning"><?php echo $proceso['tareas_pendientes']; ?></div>
@@ -485,7 +576,7 @@ $pageScripts = '
     // Definir variables globales para JavaScript
     const BASE_URL = "' . BASE_URL . '";
 </script>
-<script type="text/javascript" src="' . BASE_URL . '/resources/modules/dashboard/dashboard.js"></script>
+<script type="module" src="' . BASE_URL . '/public/assets/js/dashboard/dashboard.js"></script>
 ';
 include RESOURCES_PATH . '/layouts/main.php';
 ?>

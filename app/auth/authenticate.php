@@ -1,6 +1,6 @@
 <?php 
 //$page_title = 'Authenticate';
-require_once('../core/00_load.php'); 
+require_once('../core/load.php'); 
 
 $req_fields = array('username','password' );
 validate_fields($req_fields);
@@ -16,18 +16,18 @@ if(empty($errors)){
      updateLastLogIn($user_name);
      $session->msg("s", "Bienvenido a Tamadom.");
      // Redirigir al dashboard usando el sistema de rutas
-     redirect('dashboard', false);
+     redirectTo('sistema/dashboard', false);
 
   } else {
     $session->msg("d", "Nombre de usuario y/o contraseña incorrecto.");
     // Redirigir al login/index
-    redirect('', false);
+    redirectTo('sistema', false);
   }
  
 } else {
    $session->msg("d", $errors);
    // Redirigir al login con errores
-   redirect('', false);
+   redirectTo('sistema', false);
 }
 
 ?>
