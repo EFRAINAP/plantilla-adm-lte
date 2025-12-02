@@ -19,7 +19,7 @@
     <Else>
         # Bloquear acceso directo a otros archivos
         Require all denied
-        ErrorDocument 403 /sistema-new/public/index.php?404=1
+        ErrorDocument 403 /sistema-plantilla/public/index.php?404=1
     </Else>
 </Files>
 

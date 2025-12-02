@@ -1,6 +1,6 @@
 <?php 
 //$page_title = 'Authenticate';
-require_once('../core/load.php'); 
+require_once __DIR__ . '/../core/load.php';
 
 $req_fields = array('username','password' );
 validate_fields($req_fields);

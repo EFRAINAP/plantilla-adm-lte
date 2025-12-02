@@ -11,17 +11,8 @@ ini_set('display_errors', 1);
 // Configuración de timezone para lima
 date_default_timezone_set('America/Lima');
 
-// Autoloader de Composer
-require_once __DIR__ . '/../vendor/autoload.php';
-
-// Cargar configuración del sistema
-require_once __DIR__ . '/../app/Config/Config.php';
-
 // carga la conexión a la base de datos (que ya incluye .env)
 require_once __DIR__ . '/../app/core/load.php';
-
-// Iniciar sesión
-//session_start();
 
 // Configuración básica
 define('BASE_PATH', dirname(__DIR__));

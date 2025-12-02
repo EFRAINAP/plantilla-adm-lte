@@ -66,20 +66,6 @@ function display_msg($msg ='' || array()){
      return "";
    }
 }
-/*--------------------------------------------------------------*/
-/* Function for redirect - Simple y escalable
-/*--------------------------------------------------------------*/
-function redirect($url, $permanent = false)
-{
-    // Si no es URL completa, agregar el dominio base
-    if (!preg_match('/^https?:\/\//', $url)) {
-        $base = 'http://localhost/sistema-new';
-        $url = $base . '/' . ltrim($url, '/');
-    }
-    
-    header('Location: ' . $url, true, ($permanent === true) ? 301 : 302);
-    exit();
-}
 
 /*--------------------------------------------------------------*/
 /* Function for redirect usando Config (más robusta)
@@ -87,13 +73,7 @@ function redirect($url, $permanent = false)
 function redirectTo($path, $permanent = false)
 {
     // Usar la clase Config si está disponible
-    if (class_exists('Config')) {
-        $url = Config::url($path);
-    } else {
-        // Fallback al método anterior
-        redirect($path, $permanent);
-        return;
-    }
+    $url = Config::url($path);
     
     if (headers_sent() === false) {
         header('Location: ' . $url, true, ($permanent === true) ? 301 : 302);
