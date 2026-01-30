@@ -34,6 +34,16 @@ $router->get('/sistema/auth/login', function() {
     }
 });
 
+// Rutas públicas (sin autenticación requerida)
+$router->get('/sistema/auth/login2', function() {
+    global $session;
+    if ($session && $session->isUserLoggedIn(true)) {
+        redirectTo('sistema/dashboard');  // Si ya está logueado, ir a dashboard
+    } else {
+        renderView('auth/index-old', ['title' => 'Iniciar Sesión']);
+    }
+});
+
 // Dashboard principal del sistema
 $router->get('/sistema/dashboard', function() {
     renderView('dashboard/index', ['title' => 'Dashboard Principal']);

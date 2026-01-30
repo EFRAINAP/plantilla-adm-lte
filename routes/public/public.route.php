@@ -35,3 +35,7 @@ $router->get('/cotiza', function() {
 $router->get('/contacto', function() {
     renderView('landing/contacto', ['title' => 'Contacto - EMPRESA Ingenieros']);
 });
+
+$router->get('/test-tailwind', function() {
+    renderView('landing/test-simple', ['title' => 'Test Tailwind CSS']);
+});
