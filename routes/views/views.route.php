@@ -49,6 +49,10 @@ $router->get('/sistema/dashboard', function() {
     renderView('dashboard/index', ['title' => 'Dashboard Principal']);
 });
 
+$router->get('/sistema/prueba-template', function() {
+    renderView('dashboard/test-template', ['title' => 'Prueba de Template']);
+});
+
 // Módulo de usuarios
 require_once BASE_PATH . '/routes/views/usuarios.route.php';
 // Módulo de ISO

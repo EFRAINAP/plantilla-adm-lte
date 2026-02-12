@@ -1,6 +1,7 @@
 <?php
 // resources/modules/landing/nosotros.php
 $title = 'Nosotros';
+$activePage = 'Nosotros'; // Para resaltar el menú activo
 $pageTitle = 'Acerca de Nosotros';
 $breadcrumbs = ['Inicio', 'Nosotros'];
 

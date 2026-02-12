@@ -1,6 +1,7 @@
 <?php
 // resources/modules/landing/inicio.php
 $title = 'Inicio';
+$activePage = 'Inicio'; // Para resaltar el menú activo
 $pageTitle = 'Bienvenido';
 $breadcrumbs = ['Inicio'];
 

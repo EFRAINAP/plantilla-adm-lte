@@ -1,6 +1,19 @@
 <?php
 // resources/layouts/landing.php - Layout para páginas públicas/landing
 $title = $title ?? 'Sistema Web';
+$activePage = $activePage ?? '';
+function navActive($route, $title = null) {
+    return $title === $route
+        ? 'text-blue-600 font-semibold border-b-2 border-blue-600'
+        : 'text-gray-600 hover:text-blue-600 font-medium transition-colors';
+}
+
+function navActiveMobile($route, $activePage = null) {
+    return $activePage === $route
+        ? 'block py-2 text-blue-600 font-semibold border-b-2 border-blue-600'
+        : 'block py-2 text-gray-600 hover:text-blue-600 font-medium transition-colors';
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -30,10 +43,10 @@ $title = $title ?? 'Sistema Web';
                     <img src="<?= assetPublicImages('logito.png') ?>" alt="Logo" class="h-10 w-auto mr-3">
                     <span class="text-xl font-bold text-gray-800">EMPRESA</span>
                 </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="<?= url('inicio') ?>" class="text-gray-600 hover:text-blue-600 font-medium transition-colors">Inicio</a>
-                    <a href="<?= url('servicios') ?>" class="text-gray-600 hover:text-blue-600 font-medium transition-colors">Servicios</a>
-                    <a href="<?= url('nosotros') ?>" class="text-gray-600 hover:text-blue-600 font-medium transition-colors">Nosotros</a>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="<?= url('inicio') ?>" class="<?= navActive('Inicio', $activePage) ?>">Inicio</a>
+                    <a href="<?= url('servicios') ?>" class="<?= navActive('Servicios', $activePage) ?>">Servicios</a>
+                    <a href="<?= url('nosotros') ?>" class="<?= navActive('Nosotros', $activePage) ?>">Nosotros</a>
                     <a href="<?= url('sistema') ?>" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium">Iniciar Sesión</a>
                 </div>
                 <!-- Mobile menu button -->
@@ -45,9 +58,9 @@ $title = $title ?? 'Sistema Web';
             </div>
             <!-- Mobile menu -->
             <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200 pt-4 pb-4">
-                <a href="<?= url('inicio') ?>" class="block py-2 text-gray-600 hover:text-blue-600">Inicio</a>
-                <a href="<?= url('servicios') ?>" class="block py-2 text-gray-600 hover:text-blue-600">Servicios</a>
-                <a href="<?= url('nosotros') ?>" class="block py-2 text-gray-600 hover:text-blue-600">Nosotros</a>
+                <a href="<?= url('inicio') ?>" class="<?= navActiveMobile('Inicio', $activePage) ?>">Inicio</a>
+                <a href="<?= url('servicios') ?>" class="<?= navActiveMobile('Servicios', $activePage) ?>">Servicios</a>
+                <a href="<?= url('nosotros') ?>" class="<?= navActiveMobile('Nosotros', $activePage) ?>">Nosotros</a>
                 <a href="<?= url('sistema') ?>" class="block py-2 mt-2 bg-blue-600 text-white px-4 py-2 rounded-lg text-center hover:bg-blue-700 transition-colors">Iniciar Sesión</a>
             </div>
         </div>

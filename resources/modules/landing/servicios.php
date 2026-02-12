@@ -1,6 +1,7 @@
 <?php
 // resources/modules/landing/servicios.php
 $title = 'Servicios';
+$activePage = 'Servicios'; // Para resaltar el menú activo
 $pageTitle = 'Nuestros Servicios';
 $breadcrumbs = ['Inicio', 'Servicios'];
 

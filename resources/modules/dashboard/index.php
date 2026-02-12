@@ -578,5 +578,5 @@ $pageScripts = '
 </script>
 <script type="module" src="' . BASE_URL . '/public/assets/js/dashboard/dashboard.js"></script>
 ';
-include RESOURCES_PATH . '/layouts/main.php';
+include RESOURCES_PATH . '/layouts/main-tail.php';
 ?>
