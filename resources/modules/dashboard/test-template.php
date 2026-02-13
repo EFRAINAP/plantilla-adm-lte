@@ -33,7 +33,6 @@ $pageScripts = '
     // Definir variables globales para JavaScript
     const BASE_URL = "' . BASE_URL . '";
 </script>
-<script type="module" src="' . BASE_URL . '/public/assets/js/dashboard/dashboard.js"></script>
 ';
 include RESOURCES_PATH . '/layouts/main-tail.php';
 ?>

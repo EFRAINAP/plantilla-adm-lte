@@ -7,7 +7,9 @@
     "test": "test"
   },
   "scripts": {
-    "build": "vite build"
+    "build": "vite build",
+    "watch": "tailwindcss -i resources/css/app.css -o public/assets/tailwind.css --watch",
+    "css:build": "tailwindcss -i resources/css/app.css -o public/assets/tailwind.css --minify"
   },
   "repository": {
     "type": "git",

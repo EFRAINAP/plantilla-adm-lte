@@ -45,12 +45,12 @@ $user = [
   <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-30 hidden lg:hidden"></div>
   
   <!-- Sidebar -->
-  <aside id="sidebar" class="w-44 bg-slate-800 flex-shrink-0 h-screen relative z-40 transition-all duration-300 ease-in-out flex-col hidden lg:flex">
+  <aside id="sidebar" class="w-64 bg-slate-800 flex-shrink-0 h-screen relative z-40 transition-all duration-300 ease-in-out flex-col hidden lg:flex overflow-y-auto overflow-x-hidden">
     <!-- Logo -->
-    <div class="flex items-center h-16 px-3 bg-slate-900 border-b border-slate-700">
-      <div class="flex items-center space-x-2">
-        <img src="<?= assetPublicImages('logito.png') ?>" alt="Logo" class="w-5 h-5 object-contain">
-        <span class="text-white font-medium text-sm sidebar-text">EMPRESA</span>
+    <div class="flex items-center h-16 px-3 bg-slate-900 border-b border-slate-700 justify-center">
+      <div class="flex space-x-2 items-center">
+        <img src="<?= assetPublicImages('logito.png') ?>" alt="Logo" class="w-10 h-10 object-contain">
+        <span class="text-white font-medium text-xl sidebar-text">EMPRESA</span>
       </div>
     </div>
     
@@ -83,9 +83,6 @@ $user = [
             <button id="sidebar-toggle" class="hidden lg:block p-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100" title="Contraer/Expandir Sidebar">
               <i class="fas fa-bars text-sm"></i>
             </button>
-            <button id="sidebar-hide" class="hidden lg:block p-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100" title="Ocultar Sidebar">
-              <i class="fas fa-eye-slash text-sm"></i>
-            </button>
             <div class="hidden lg:block text-sm text-gray-500">
               <span>Sistema Administrativo</span>
             </div>
@@ -102,12 +99,12 @@ $user = [
             <div class="relative">
               <button class="dropdown-toggle p-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100" data-target="#messages-dropdown">
                 <i class="fas fa-envelope text-sm"></i>
-                <span class="absolute -top-1 -right-1 inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-bold leading-none text-red-500 rounded-full">3</span>
+                <span class="absolute -top-1 -right-1 inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-bold leading-none text-red-500 bg-red-100 rounded-full">3</span>
               </button>
-              <div id="messages-dropdown" class="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-lg border hidden z-50">
+              <div id="messages-dropdown" class="absolute right-0 mt-2 w-150 bg-white rounded-lg shadow-lg border hidden z-50">
                 <div class="p-4 border-b">
                   <h3 class="text-sm font-semibold text-gray-900">Mensajes</h3>
-                  <p class="text-xs text-gray-500 mt-2">3 mensajes nuevos</p>
+                  <p class="text-xs text-gray-500 mt-1">3 mensajes nuevos</p>
                 </div>
                 <div class="p-4">
                   <p class="text-sm text-gray-500">No hay mensajes nuevos</p>
@@ -119,9 +116,9 @@ $user = [
             <div class="relative">
               <button class="dropdown-toggle p-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100" data-target="#notifications-dropdown">
                 <i class="fas fa-bell text-sm"></i>
-                <span class="absolute -top-1 -right-1 inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-bold leading-none text-white bg-yellow-500 rounded-full">5</span>
+                <span class="absolute -top-1 -right-1 inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-bold leading-none text-yellow-500 bg-yellow-100 rounded-full">5</span>
               </button>
-              <div id="notifications-dropdown" class="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-lg border hidden z-50">
+              <div id="notifications-dropdown" class="absolute right-0 mt-2 w-150 bg-white rounded-lg shadow-lg border hidden z-50">
                 <div class="p-4 border-b">
                   <h3 class="text-sm font-semibold text-gray-900">Notificaciones</h3>
                   <p class="text-xs text-gray-500 mt-1">5 notificaciones nuevas</p>
@@ -250,49 +247,35 @@ $user = [
 
 <script>
 $(document).ready(function() {
-    // Restaurar estado del sidebar
+    // ===== ESTADO DEL SIDEBAR =====
     const sidebarState = localStorage.getItem('sidebar-state-tailwind');
     const $sidebar = $('#sidebar');
     
     if (sidebarState === 'collapsed') {
-        $sidebar.removeClass('w-44').addClass('w-12');
+        $sidebar.removeClass('w-64').addClass('w-16');
         $('.sidebar-text').addClass('hidden');
-        $('body').addClass('sidebar-collapse');
     }
     
+    // ===== CONTROLES DEL SIDEBAR =====
     // Toggle sidebar (contraer/expandir)
     $('#sidebar-toggle').click(function(e) {
         e.preventDefault();
         const $sidebar = $('#sidebar');
-        const isCollapsed = $sidebar.hasClass('w-12');
+        const isCollapsed = $sidebar.hasClass('w-16');
         
         if (isCollapsed) {
             // Expandir
-            $sidebar.removeClass('w-12').addClass('w-44');
+            $sidebar.removeClass('w-16').addClass('w-64');
             $('.sidebar-text').removeClass('hidden');
-            $('body').removeClass('sidebar-collapse');
             localStorage.setItem('sidebar-state-tailwind', 'expanded');
         } else {
             // Contraer  
-            $sidebar.removeClass('w-44').addClass('w-12');
+            $sidebar.removeClass('w-64').addClass('w-16');
             $('.sidebar-text').addClass('hidden');
-            $('body').addClass('sidebar-collapse');
             // Cerrar submenús al contraer
             $('.submenu').addClass('hidden').removeClass('block');
             $('.fa-chevron-right').removeClass('rotate-90');
             localStorage.setItem('sidebar-state-tailwind', 'collapsed');
-        }
-    });
-    
-    // Ocultar sidebar completamente (solo en mobile)
-    $('#sidebar-hide').click(function(e) {
-        e.preventDefault();
-        const $sidebar = $('#sidebar');
-        
-        // Solo funciona en mobile
-        if ($(window).width() < 1024) {
-            $sidebar.toggleClass('hidden');
-            $('#sidebar-overlay').addClass('hidden');
         }
     });
     
@@ -301,12 +284,11 @@ $(document).ready(function() {
         const $sidebar = $('#sidebar');
         const $overlay = $('#sidebar-overlay');
         
-        // Mostrar sidebar como overlay en mobile
         $sidebar.removeClass('hidden lg:block lg:flex').addClass('fixed block flex');
         $sidebar.css({
             'top': '0',
             'left': '0',
-            'width': '11rem', // w-44
+            'width': '11rem',
             'z-index': '50'
         });
         $overlay.removeClass('hidden');
@@ -316,7 +298,6 @@ $(document).ready(function() {
         const $sidebar = $('#sidebar');
         $(this).addClass('hidden');
         
-        // Restaurar sidebar a estado original
         $sidebar.removeClass('fixed block flex').addClass('hidden lg:block lg:flex');
         $sidebar.css({
             'top': '',
@@ -326,17 +307,87 @@ $(document).ready(function() {
         });
     });
     
-    // Dropdowns
+    // ===== SUBMENÚS DEL SIDEBAR =====
+    // Toggle submenús con animaciones
+    $('[data-submenu-toggle]').click(function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const $button = $(this);
+        const $menuItem = $button.closest('.relative');
+        const $submenu = $menuItem.find('.submenu');
+        const $arrow = $button.find('.fa-chevron-right');
+        
+        if ($submenu.length === 0) return;
+        
+        const isHidden = $submenu.hasClass('hidden');
+        
+        if (isHidden) {
+            // Mostrar submenu
+            $submenu.removeClass('hidden').addClass('block');
+            $arrow.addClass('rotate-90');
+            
+            // Animación de entrada
+            $submenu.css({
+                'maxHeight': '0px',
+                'opacity': '0',
+                'transition': 'all 0.3s ease-in-out'
+            });
+            
+            setTimeout(() => {
+                $submenu.css({
+                    'maxHeight': $submenu.get(0).scrollHeight + 'px',
+                    'opacity': '1'
+                });
+            }, 10);
+        } else {
+            // Ocultar submenu
+            $submenu.css({
+                'maxHeight': '0px',
+                'opacity': '0'
+            });
+            $arrow.removeClass('rotate-90');
+            
+            setTimeout(() => {
+                $submenu.addClass('hidden').removeClass('block');
+                $submenu.css({
+                    'maxHeight': '',
+                    'opacity': '',
+                    'transition': ''
+                });
+            }, 300);
+        }
+    });
+    
+    // Mantener submenús abiertos si contienen el item activo
+    const $activeSubmenu = $('.submenu .bg-red-600');
+    if ($activeSubmenu.length > 0) {
+        let $currentSubmenu = $activeSubmenu.closest('.submenu');
+        while ($currentSubmenu.length > 0) {
+            $currentSubmenu.removeClass('hidden').addClass('block');
+            
+            const $parentButton = $currentSubmenu.parent().find('[data-submenu-toggle]').first();
+            if ($parentButton.length > 0) {
+                const $arrow = $parentButton.find('.fa-chevron-right');
+                $arrow.addClass('rotate-90');
+            }
+            
+            // Buscar submenu padre si existe
+            $currentSubmenu = $currentSubmenu.parent().closest('.submenu');
+        }
+    }
+    
+    // ===== DROPDOWNS =====
     $('.dropdown-toggle').click(function(e) {
         e.stopPropagation();
         const target = $(this).data('target');
-        const dropdown = $(target);
+        const $dropdown = $(target);
         
         // Cerrar otros dropdowns
-        $('[id$="-dropdown"]').not(dropdown).addClass('hidden');
+        $('[id$="-dropdown"]').not($dropdown).addClass('hidden');
         
         // Toggle este dropdown
-        dropdown.toggleClass('hidden');
+        $dropdown.toggleClass('hidden');
     });
     
     $(document).click(function() {
@@ -347,7 +398,7 @@ $(document).ready(function() {
         e.stopPropagation();
     });
     
-    // Fullscreen
+    // ===== PANTALLA COMPLETA =====
     $('#fullscreen-btn').click(function() {
         if (document.fullscreenElement) {
             document.exitFullscreen();
@@ -357,76 +408,8 @@ $(document).ready(function() {
             $(this).find('i').removeClass('fa-expand').addClass('fa-compress');
         }
     });
-    
-    // Toggle submenús del sidebar
-    $('[data-submenu-toggle]').click(function(e) {
-        e.preventDefault();
-        const $button = $(this);
-        const $navItem = $button.closest('.nav-item');
-        const $submenu = $navItem.find('.submenu');
-        const $arrow = $button.find('.fa-chevron-right');
-        
-        // Cerrar otros submenús del mismo nivel
-        $navItem.siblings('.nav-item').each(function() {
-            $(this).find('.submenu').addClass('hidden').removeClass('block');
-            $(this).find('.fa-chevron-right').removeClass('rotate-90');
-        });
-        
-        // Toggle este submenú
-        if ($submenu.hasClass('hidden')) {
-            $submenu.removeClass('hidden').addClass('block');
-            $arrow.addClass('rotate-90');
-        } else {
-            $submenu.addClass('hidden').removeClass('block');
-            $arrow.removeClass('rotate-90');
-        }
-    });
 });
 </script>
-
-<style>
-/* Sidebar contraído - tooltip */
-.sidebar-collapse .sidebar-text {
-  display: none;
-}
-
-.sidebar-collapse #sidebar:hover .nav-item .sidebar-text {
-  display: block !important;
-  position: absolute;
-  left: calc(100% + 0.5rem);
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.9);
-  color: white;
-  padding: 0.5rem 0.75rem;
-  border-radius: 0.375rem;
-  white-space: nowrap;
-  z-index: 1000;
-}
-
-/* Transiciones suaves */
-#sidebar {
-  transition: width 0.3s ease;
-}
-
-/* Mobile - no tooltips */
-@media (max-width: 1023px) {
-  .sidebar-collapse #sidebar:hover .nav-item .sidebar-text {
-    display: none !important;
-  }
-  
-  /* Sidebar oculto por defecto en mobile */
-  #sidebar {
-    display: none;
-  }
-  
-  /* Cuando se muestra en mobile, usar posición fija */
-  #sidebar.fixed {
-    display: flex !important;
-    position: fixed !important;
-  }
-}
-</style>
 
 </body>
 </html>

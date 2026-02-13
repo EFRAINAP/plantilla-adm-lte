@@ -137,13 +137,13 @@ function renderMenuItemTailwind($item, $level = 0) {
     if ($level === 0) {
         $itemClasses .= ' px-3 py-2 text-sm font-medium';
     } else {
-        $itemClasses .= ' px-3 py-2 ml-6 text-sm';
+        $itemClasses .= ' px-3 py-2 pl-6 text-sm';  // pl-6 para indentación mínima
     }
     
     // Estados visuales
     if ($isActive) {
-        $itemClasses .= ' bg-blue-600 text-white';
-        $iconClasses = 'text-blue-200';
+        $itemClasses .= ' bg-red-600 text-white';
+        $iconClasses = 'text-red-200';
         $textClasses = 'text-white';
     } elseif ($isOpen) {
         $itemClasses .= ' bg-slate-700 text-slate-200';
@@ -155,7 +155,7 @@ function renderMenuItemTailwind($item, $level = 0) {
         $textClasses = 'text-slate-300 group-hover:text-white';
     }
     
-    $html = '<div class="nav-item">';
+    $html = '<div class="relative">';
     
     // Enlace o botón
     if (isset($item['route']) && !$hasChildren) {
@@ -163,30 +163,35 @@ function renderMenuItemTailwind($item, $level = 0) {
         $url = isset($item['external']) && $item['external'] ? $item['route'] : url($item['route']);
         $html .= '<a href="' . htmlspecialchars($url) . '"' . $target . ' class="' . $itemClasses . '">';
     } else {
-        $html .= '<button type="button" class="' . $itemClasses . ' w-full" data-submenu-toggle>';
+        $html .= '<button type="button" class="' . $itemClasses . ' w-full justify-between" data-submenu-toggle>';
     }
+    
+    // Contenedor para ícono + título (se mantendrán juntos)
+    $html .= '<div class="flex items-center">';
     
     // Icono
     if (isset($item['icon'])) {
         $icon = htmlspecialchars($item['icon']);
-        $html .= '<i class="' . $icon . ' w-5 h-5 mr-3 flex-shrink-0 ' . $iconClasses . '"></i>';
+        $html .= '<i class="' . $icon . ' w-3 h-3 mr-3 flex-shrink-0 ' . $iconClasses . '"></i>';
     } else {
         // Iconos por defecto según el nivel
         if ($level === 0) {
-            $html .= '<i class="fas fa-circle w-5 h-5 mr-3 flex-shrink-0 ' . $iconClasses . '"></i>';
+            $html .= '<i class="fas fa-circle w-3 h-3 mr-3 flex-shrink-0 ' . $iconClasses . '"></i>';
         } elseif ($level === 1) {
-            $html .= '<i class="far fa-circle w-5 h-5 mr-3 flex-shrink-0 ' . $iconClasses . '"></i>';
+            $html .= '<i class="far fa-circle w-3 h-3 mr-3 flex-shrink-0 ' . $iconClasses . '"></i>';
         } else {
-            $html .= '<i class="far fa-dot-circle w-5 h-5 mr-3 flex-shrink-0 ' . $iconClasses . '"></i>';
+            $html .= '<i class="far fa-dot-circle w-3 h-3 flex-shrink-0 ' . $iconClasses . '"></i>';
         }
     }
     
     // Título
-    $html .= '<span class="flex-1 sidebar-text ' . $textClasses . '">' . htmlspecialchars($item['title']) . '</span>';
+    $html .= '<span class="sidebar-text ' . $textClasses . '">' . htmlspecialchars($item['title']) . '</span>';
+    $html .= '</div>';
     
-    // Flecha para items con hijos
+    // Flecha para items con hijos (posicionada a la derecha por justify-between)
     if ($hasChildren) {
-        $arrowClasses = 'w-4 h-4 flex-shrink-0 transition-transform duration-200' . ($isOpen ? ' rotate-90' : '');
+        // Solo clases base - JavaScript maneja la rotación dinámicamente
+        $arrowClasses = 'w-3 h-3 flex-shrink-0 transition-transform duration-200';
         $html .= '<i class="fas fa-chevron-right ' . $arrowClasses . ' sidebar-text ' . $iconClasses . '"></i>';
     }
     
