@@ -204,7 +204,7 @@ if($session->isUserLoggedIn(true)) {redirectTo('dashboard', false);}
                                         name="username" 
                                         id="username" 
                                         required 
-                                        class="block w-full pl-12 pr-4 py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 bg-gray-50 focus:bg-white"
+                                        class="block w-full pl-12 pr-4 py-4 border-0 ring-1 ring-gray-300 rounded-xl  focus:ring-offset-0 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 bg-gray-50 focus:bg-white"
                                         placeholder="Ingresa tu usuario"
                                     >
                                     <div class="input-line absolute bottom-0 left-0 right-0"></div>
